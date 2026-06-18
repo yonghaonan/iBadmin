@@ -53,8 +53,8 @@ export class DesignTokens {
   static readonly COLOR_TEXT_ON_PRIMARY: string = '#FFFFFF'
   static readonly COLOR_HUAWEI_RED: string = '#E60012'
   static readonly COLOR_HUAWEI_RED_BG: string = '#FFEBEE'
-  static readonly COLOR_SHADOW: string = 'rgba(255,140,0,0.15)'
-  static readonly COLOR_OVERLAY: string = 'rgba(255,255,255,0.85)'
+  static readonly COLOR_SHADOW: string = '#26FF8C00'
+  static readonly COLOR_OVERLAY: string = '#D9FFFFFF'
 
   // ========== v1.1.2 新增 AI 智能主题色 ==========
   static readonly COLOR_AI_ORANGE: string = '#FF8C00'
@@ -65,10 +65,10 @@ export class DesignTokens {
   static readonly COLOR_AI_TAG_BG_END: string = '#FF6F00'
   static readonly COLOR_AI_BORDER: string = '#FFF0DC'
   static readonly COLOR_AI_STATUS_DOT: string = '#43A047'
-  static readonly COLOR_AI_GLOW: string = 'rgba(255,140,0,0.4)'
-  static readonly COLOR_AI_GLOW_STRONG: string = 'rgba(255,140,0,0.7)'
-  static readonly COLOR_SHADOW_SOFT: string = 'rgba(0,0,0,0.04)'
-  static readonly COLOR_SHADOW_AI_BUTTON: string = 'rgba(255,140,0,0.5)'
+  static readonly COLOR_AI_GLOW: string = '#66FF8C00'
+  static readonly COLOR_AI_GLOW_STRONG: string = '#B2FF8C00'
+  static readonly COLOR_SHADOW_SOFT: string = '#0A000000'
+  static readonly COLOR_SHADOW_AI_BUTTON: string = '#80FF8C00'
 
   // ========== 字体尺寸（fp）==========
   static readonly FONT_HERO: number = 32

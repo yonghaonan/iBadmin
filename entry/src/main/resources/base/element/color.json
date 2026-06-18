@@ -35,10 +35,10 @@
     { "name": "ai_tag_bg_end", "value": "#FF6F00" },
     { "name": "ai_border", "value": "#FFF0DC" },
     { "name": "ai_status_dot", "value": "#43A047" },
-    { "name": "ai_glow_color", "value": "rgba(255,140,0,0.4)" },
-    { "name": "ai_glow_color_strong", "value": "rgba(255,140,0,0.7)" },
-    { "name": "shadow_soft", "value": "rgba(0,0,0,0.04)" },
-    { "name": "shadow_ai_button", "value": "rgba(255,140,0,0.5)" },
+    { "name": "ai_glow_color", "value": "#66FF8C00" },
+    { "name": "ai_glow_color_strong", "value": "#B2FF8C00" },
+    { "name": "shadow_soft", "value": "#0A000000" },
+    { "name": "shadow_ai_button", "value": "#80FF8C00" },
     { "name": "tab_pill_active", "value": "#FF8C00" },
     { "name": "tab_inactive", "value": "#BDBDBD" }
   ]

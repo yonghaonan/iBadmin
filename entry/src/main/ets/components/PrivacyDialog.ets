@@ -140,7 +140,7 @@ export struct PrivacyDialog {
       .width('100%')
       .height('100%')
       .justifyContent(FlexAlign.Center)
-      .backgroundColor(this.visible ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)')
+      .backgroundColor(this.visible ? '#80000000' : '#00000000')
       .hitTestBehavior(HitTestMode.Transparent)
     }
     .width('100%')
