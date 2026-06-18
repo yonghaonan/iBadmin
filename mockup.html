@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iBadmin UI v2 — 3 套优化方案（简约 / 智能 / 现代）</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "HarmonyOS Sans", sans-serif; background: #E8EAED; display: flex; justify-content: center; align-items: flex-start; gap: 32px; padding: 40px 20px; min-height: 100vh; flex-wrap: wrap; }
+  .mockup-title { width: 100%; text-align: center; font-size: 18px; color: #333; margin-bottom: 8px; font-weight: 700; }
+  .mockup-subtitle { width: 100%; text-align: center; font-size: 13px; color: #888; margin-bottom: 24px; }
+  .phone { width: 375px; height: 812px; background: #FFFFFF; border-radius: 44px; box-shadow: 0 24px 60px rgba(0,0,0,0.18); overflow: hidden; position: relative; display: flex; flex-direction: column; }
+  .phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 30px; background: #000; border-radius: 0 0 20px 20px; z-index: 10; }
+  .status-bar { height: 50px; padding: 16px 24px 0; display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; }
+  .header { padding: 20px 24px 16px; }
+  .section-title { padding: 8px 24px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: 700; }
+  .news-list { flex: 1; overflow-y: auto; padding: 0 16px 16px; }
+  .tab-bar { height: 72px; background: #FFFFFF; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #F0F0F0; }
+  .tab { display: flex; flex-direction: column; align-items: center; gap: 2px; flex: 1; }
+  .tab-pill { width: 56px; height: 28px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: all 0.2s; }
+  .tab-label { font-size: 11px; font-weight: 500; }
+  .header-title { letter-spacing: -0.5px; }
+  .smart-tag { display: inline-flex; align-items: center; gap: 3px; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; }
+  .ai-icon { width: 16px; height: 16px; background: linear-gradient(135deg, #FF8C00, #FF6F00); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 10px; }
+
+  /* ============ A1：极简白卡 ============ */
+  .a1-status-bar { color: #1A1A1A; }
+  .a1-header { padding: 32px 24px 20px; }
+  .a1-greeting { font-size: 32px; font-weight: 800; color: #1A1A1A; line-height: 1.1; letter-spacing: -1px; margin-bottom: 8px; }
+  .a1-greeting .accent { color: #FF8C00; }
+  .a1-sub { font-size: 14px; color: #999; font-weight: 400; }
+  .a1-section { padding: 24px 24px 12px; }
+  .a1-section-title { font-size: 18px; font-weight: 700; color: #1A1A1A; margin-bottom: 16px; }
+  .a1-news-card { background: #FFFFFF; border-radius: 24px; padding: 24px; margin: 0 16px 16px; display: flex; gap: 16px; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+  .a1-news-emoji { font-size: 36px; }
+  .a1-news-title { font-size: 15px; font-weight: 600; color: #1A1A1A; line-height: 1.3; flex: 1; }
+  .a1-tab-bar { background: #FFFFFF; border-top: 1px solid #F5F5F5; }
+  .a1-tab.active .tab-pill { background: #FF8C00; width: 64px; height: 32px; }
+  .a1-tab.active .tab-label { color: #FF8C00; font-weight: 700; }
+  .a1-tab.inactive .tab-label { color: #BDBDBD; }
+  .a1-tab.inactive .tab-pill { background: transparent; }
+
+  /* ============ A2：智能情境 ============ */
+  .a2-status-bar { color: #1A1A1A; }
+  .a2-header { padding: 20px 24px 12px; display: flex; justify-content: space-between; align-items: center; }
+  .a2-greeting-block { flex: 1; }
+  .a2-greeting { font-size: 24px; font-weight: 700; color: #1A1A1A; }
+  .a2-ai-button { width: 48px; height: 48px; background: linear-gradient(135deg, #FF8C00, #FF6F00); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 0 16px rgba(255,140,0,0.4); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { box-shadow: 0 0 16px rgba(255,140,0,0.4); } 50% { box-shadow: 0 0 24px rgba(255,140,0,0.7); } }
+  .a2-hero { margin: 0 20px 20px; padding: 20px; background: linear-gradient(135deg, #FFF4E6, #FFE0B2); border-radius: 20px; position: relative; overflow: hidden; }
+  .a2-hero::before { content: ''; position: absolute; top: -30px; right: -30px; width: 100px; height: 100px; background: radial-gradient(circle, rgba(255,140,0,0.2), transparent); border-radius: 50%; }
+  .a2-hero-text { font-size: 14px; color: #5D4037; line-height: 1.6; position: relative; }
+  .a2-hero-text strong { color: #FF6F00; font-weight: 700; }
+  .a2-hero-dot { display: inline-block; width: 8px; height: 8px; background: #43A047; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+  .a2-section { padding: 8px 24px 12px; }
+  .a2-news-card { background: #FFFFFF; border-radius: 20px; padding: 16px; margin: 0 16px 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); position: relative; border: 1px solid #FFF0DC; }
+  .a2-news-emoji { font-size: 32px; margin-bottom: 8px; }
+  .a2-news-title { font-size: 15px; font-weight: 600; color: #1A1A1A; line-height: 1.4; margin-bottom: 4px; }
+  .a2-news-meta { font-size: 11px; color: #999; }
+  .a2-news-tag { background: linear-gradient(90deg, #FF8C00, #FF6F00); color: white; position: absolute; top: 12px; right: 12px; }
+  .a2-tab-bar { background: #FFFFFF; }
+  .a2-tab.active .tab-pill { background: #FF8C00; position: relative; }
+  .a2-tab.active .tab-pill::after { content: ''; position: absolute; top: 2px; right: 4px; width: 6px; height: 6px; background: white; border-radius: 50%; }
+  .a2-tab.active .tab-label { color: #FF8C00; font-weight: 700; }
+  .a2-tab.inactive .tab-label { color: #BDBDBD; }
+  .a2-tab.inactive .tab-pill { background: transparent; }
+  .a2-fab { position: absolute; bottom: 90px; right: 20px; width: 56px; height: 56px; background: linear-gradient(135deg, #FF8C00, #FF6F00); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; box-shadow: 0 8px 24px rgba(255,140,0,0.5); z-index: 5; animation: pulse 2s infinite; }
+
+  /* ============ A3：深色霓虹 ============ */
+  .a3-phone { background: #0A0E1F; }
+  .a3-status-bar { color: #FFFFFF; }
+  .a3-header { padding: 20px 24px 12px; }
+  .a3-greeting { font-size: 28px; font-weight: 800; color: #FFFFFF; line-height: 1.2; margin-bottom: 4px; }
+  .a3-greeting .accent { color: #FF8C00; text-shadow: 0 0 12px rgba(255,140,0,0.6); }
+  .a3-sub { font-size: 13px; color: #8B92A8; }
+  .a3-hero { margin: 16px 20px; padding: 24px; background: linear-gradient(135deg, rgba(255,140,0,0.15), rgba(255,140,0,0.05)); border: 1px solid rgba(255,140,0,0.3); border-radius: 20px; display: flex; align-items: center; justify-content: space-between; }
+  .a3-hero-text .a3-hero-greet { font-size: 16px; color: #FFFFFF; font-weight: 600; margin-bottom: 4px; }
+  .a3-hero-text .a3-hero-sub { font-size: 12px; color: #8B92A8; }
+  .a3-progress { width: 80px; height: 80px; position: relative; }
+  .a3-progress svg { transform: rotate(-90deg); filter: drop-shadow(0 0 8px rgba(255,140,0,0.6)); }
+  .a3-progress-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 18px; font-weight: 800; color: #FF8C00; }
+  .a3-progress-ring-bg { fill: none; stroke: rgba(255,140,0,0.2); stroke-width: 6; }
+  .a3-progress-ring-fg { fill: none; stroke: #FF8C00; stroke-width: 6; stroke-linecap: round; }
+  .a3-section { padding: 8px 24px 12px; }
+  .a3-section-title { font-size: 16px; font-weight: 700; color: #FFFFFF; }
+  .a3-news-card { background: #1A1F3A; border: 1px solid rgba(255,140,0,0.2); border-radius: 16px; padding: 16px; margin: 0 16px 12px; display: flex; gap: 12px; align-items: center; }
+  .a3-news-emoji { font-size: 28px; filter: drop-shadow(0 0 6px rgba(255,140,0,0.5)); }
+  .a3-news-title { font-size: 14px; font-weight: 600; color: #FFFFFF; line-height: 1.4; flex: 1; }
+  .a3-news-meta { font-size: 10px; color: #8B92A8; }
+  .a3-tab-bar { background: #0A0E1F; border-top: 1px solid rgba(255,140,0,0.2); }
+  .a3-tab.active .tab-pill { background: linear-gradient(135deg, #FF8C00, #FF6F00); box-shadow: 0 0 12px rgba(255,140,0,0.6); }
+  .a3-tab.active .tab-label { color: #FF8C00; font-weight: 700; text-shadow: 0 0 8px rgba(255,140,0,0.4); }
+  .a3-tab.inactive .tab-label { color: #6B7280; }
+  .a3-tab.inactive .tab-pill { background: transparent; }
+</style>
+</head>
+<body>
+  <div class="mockup-title">iBadmin UI v2 — 3 套优化方案（简约 / 智能 / 现代）</div>
+  <div class="mockup-subtitle">所有方案以活力橙 #FF8C00 为品牌色，基于 方案 A 优化</div>
+
+  <!-- A1 极简白卡 -->
+  <div class="phone">
+    <div class="phone-notch"></div>
+    <div class="status-bar a1-status-bar"><span>11:47</span><span></span><span>85%</span></div>
+    <div class="header a1-header">
+      <div class="a1-greeting">下午好<span class="accent">.</span></div>
+      <div class="a1-sub">已为你推荐 3 场精彩羽球资讯</div>
+    </div>
+    <div class="section-title a1-section">
+      <span class="a1-section-title">为你推荐</span>
+    </div>
+    <div class="news-list">
+      <div class="a1-news-card">
+        <div class="a1-news-emoji">🏸</div>
+        <div class="a1-news-title">2026 全英公开赛决赛前瞻</div>
+      </div>
+      <div class="a1-news-card">
+        <div class="a1-news-emoji">🎯</div>
+        <div class="a1-news-title">羽球训练中的 3 个关键</div>
+      </div>
+      <div class="a1-news-card">
+        <div class="a1-news-emoji">🏟️</div>
+        <div class="a1-news-title">深圳新开 5 家球馆</div>
+      </div>
+    </div>
+    <div class="tab-bar a1-tab-bar">
+      <div class="tab active a1-tab"><div class="tab-pill">🏠</div><div class="tab-label">首页</div></div>
+      <div class="tab inactive a1-tab"><div class="tab-pill">👥</div><div class="tab-label">社区</div></div>
+      <div class="tab inactive a1-tab"><div class="tab-pill">👤</div><div class="tab-label">我的</div></div>
+    </div>
+  </div>
+
+  <!-- A2 智能情境 -->
+  <div class="phone">
+    <div class="phone-notch"></div>
+    <div class="status-bar a2-status-bar"><span>11:47</span><span></span><span>85%</span></div>
+    <div class="header a2-header">
+      <div class="a2-greeting-block">
+        <div class="a2-greeting">下午好 👋</div>
+        <div class="a1-sub" style="font-size:12px;">你的胜率偏单打</div>
+      </div>
+      <div class="a2-ai-button">🤖</div>
+    </div>
+    <div class="a2-hero">
+      <div class="a2-hero-text">
+        <span class="a2-hero-dot"></span><strong>今日 AI 洞察</strong><br/>
+        今天天气适宜、你的胜率偏单打、下午 3 点场馆空闲率最低<br/>
+        <strong>👉 建议：</strong>选择 16:00 后单打 + 反手高远球专项
+      </div>
+    </div>
+    <div class="section-title a2-section">
+      <span style="font-size:16px; font-weight:700;">智能资讯 (5)</span>
+      <span style="font-size:11px; color:#FF8C00;">AI 已为你摘要 ›</span>
+    </div>
+    <div class="news-list">
+      <div class="a2-news-card">
+        <span class="smart-tag a2-news-tag">✨ AI摘要</span>
+        <div class="a2-news-emoji">🏆</div>
+        <div class="a2-news-title">2026 全英公开赛：石宇奇晋级决赛</div>
+        <div class="a2-news-meta">3 句话摘要 · 12 分钟前</div>
+      </div>
+      <div class="a2-news-card">
+        <span class="smart-tag a2-news-tag">✨ AI摘要</span>
+        <div class="a2-news-emoji">🎯</div>
+        <div class="a2-news-title">反手高远球：3 个关键发力点</div>
+        <div class="a2-news-meta">3 句话摘要 · 1 小时前</div>
+      </div>
+      <div class="a2-news-card">
+        <span class="smart-tag a2-news-tag">✨ AI摘要</span>
+        <div class="a2-news-emoji">🏟️</div>
+        <div class="a2-news-title">深圳南山 5 家新开业羽毛球馆</div>
+        <div class="a2-news-meta">3 句话摘要 · 3 小时前</div>
+      </div>
+    </div>
+    <div class="a2-fab">🎙️</div>
+    <div class="tab-bar a2-tab-bar">
+      <div class="tab active a2-tab"><div class="tab-pill">🏠</div><div class="tab-label">首页</div></div>
+      <div class="tab inactive a2-tab"><div class="tab-pill">👥</div><div class="tab-label">社区</div></div>
+      <div class="tab inactive a2-tab"><div class="tab-pill">👤</div><div class="tab-label">我的</div></div>
+    </div>
+  </div>
+
+  <!-- A3 深色霓虹 -->
+  <div class="phone a3-phone">
+    <div class="phone-notch"></div>
+    <div class="status-bar a3-status-bar"><span>11:47</span><span></span><span>85%</span></div>
+    <div class="header a3-header">
+      <div class="a3-greeting">晚上好<span class="accent">.</span></div>
+      <div class="a3-sub">已为你点亮 3 个精彩资讯</div>
+    </div>
+    <div class="a3-hero">
+      <div class="a3-hero-text">
+        <div class="a3-hero-greet">今日目标</div>
+        <div class="a3-hero-sub">已读 3/5 资讯</div>
+      </div>
+      <div class="a3-progress">
+        <svg width="80" height="80">
+          <circle cx="40" cy="40" r="34" class="a3-progress-ring-bg"></circle>
+          <circle cx="40" cy="40" r="34" class="a3-progress-ring-fg" stroke-dasharray="213.6" stroke-dashoffset="80"></circle>
+        </svg>
+        <div class="a3-progress-text">60%</div>
+      </div>
+    </div>
+    <div class="section-title a3-section">
+      <span class="a3-section-title">最新资讯</span>
+      <span style="font-size:11px; color:#FF8C00; text-shadow: 0 0 8px rgba(255,140,0,0.4);">查看全部 ›</span>
+    </div>
+    <div class="news-list">
+      <div class="a3-news-card">
+        <div class="a3-news-emoji">🏆</div>
+        <div class="a3-news-title">2026 全英公开赛决赛前瞻</div>
+        <div class="a3-news-meta">12 分钟前 · 体育日报</div>
+      </div>
+      <div class="a3-news-card">
+        <div class="a3-news-emoji">🎯</div>
+        <div class="a3-news-title">羽球训练 3 个关键发力点</div>
+        <div class="a3-news-meta">1 小时前 · 教练在线</div>
+      </div>
+      <div class="a3-news-card">
+        <div class="a3-news-emoji">🏟️</div>
+        <div class="a3-news-title">深圳 5 家新球馆开馆</div>
+        <div class="a3-news-meta">3 小时前 · 城市生活</div>
+      </div>
+    </div>
+    <div class="tab-bar a3-tab-bar">
+      <div class="tab active a3-tab"><div class="tab-pill">🏠</div><div class="tab-label">首页</div></div>
+      <div class="tab inactive a3-tab"><div class="tab-pill">👥</div><div class="tab-label">社区</div></div>
+      <div class="tab inactive a3-tab"><div class="tab-pill">👤</div><div class="tab-label">我的</div></div>
+    </div>
+  </div>
+</body>
+</html>

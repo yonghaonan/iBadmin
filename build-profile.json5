@@ -1,0 +1,56 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\ncnby\\.ohos\\config\\default_iBadmin_kBkJG5ZL8S0sH707m9Dcvx8acR8MXNdImYkVOOTj23k=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B0F25A7CC9D289178FD7D4968348F6A600C34BE211B163FE9D03310B0C81D5A170B94C9F8B2257B",
+          "profile": "C:\\Users\\ncnby\\.ohos\\config\\default_iBadmin_kBkJG5ZL8S0sH707m9Dcvx8acR8MXNdImYkVOOTj23k=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\ncnby\\.ohos\\config\\default_iBadmin_kBkJG5ZL8S0sH707m9Dcvx8acR8MXNdImYkVOOTj23k=.p12",
+          "storePassword": "0000001B5B9FD2890B2BDF6BABB41060F336DC074639A3BA47E7C6FFC3DA67ACF5D07419DD9E1E48D61675"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "targetSdkVersion": "6.0.1(21)",
+        "compatibleSdkVersion": "6.0.1(21)",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}

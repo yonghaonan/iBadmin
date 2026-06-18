@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "home_tab_title",
+      "value": "资讯"
+    },
+    {
+      "name": "community_tab_title",
+      "value": "社区"
+    },
+    {
+      "name": "profile_tab_title",
+      "value": "我的"
+    },
+    {
+      "name": "login_with_huawei",
+      "value": "华为账号一键登录"
+    },
+    {
+      "name": "privacy_policy",
+      "value": "隐私政策"
+    },
+    {
+      "name": "nearby_venues",
+      "value": "附近场馆"
+    },
+    {
+      "name": "equipment_query",
+      "value": "装备查询"
+    },
+    {
+      "name": "player_info",
+      "value": "球员信息"
+    }
+  ]
+}

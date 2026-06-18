@@ -1,0 +1,8 @@
+{
+  "float": [
+    { "name": "page_text_font_size", "value": "16fp" },
+    { "name": "line_height_body", "value": "22fp" },
+    { "name": "line_height_title", "value": "28fp" },
+    { "name": "line_height_hero", "value": "40fp" }
+  ]
+}

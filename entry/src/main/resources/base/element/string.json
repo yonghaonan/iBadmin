@@ -1,0 +1,103 @@
+{
+  "string": [
+    { "name": "module_desc", "value": "羽毛球爱好者应用" },
+    { "name": "EntryAbility_desc", "value": "iBadmin 入口" },
+    { "name": "EntryAbility_label", "value": "iBadmin" },
+
+    { "name": "app_name", "value": "iBadmin" },
+    { "name": "app_slogan", "value": "羽毛球爱好者的一站式平台" },
+
+    { "name": "tab_home", "value": "首页" },
+    { "name": "tab_community", "value": "社区" },
+    { "name": "tab_profile", "value": "我的" },
+
+    { "name": "home_title", "value": "资讯" },
+    { "name": "home_subtitle", "value": "最新羽毛球资讯" },
+    { "name": "home_loading", "value": "加载中..." },
+    { "name": "home_empty", "value": "暂无资讯" },
+    { "name": "home_error", "value": "加载失败,请重试" },
+    { "name": "home_retry", "value": "重试" },
+    { "name": "home_read_more", "value": "查看详情" },
+
+    { "name": "community_title", "value": "社区" },
+    { "name": "community_tab_venues", "value": "附近场馆" },
+    { "name": "community_tab_equipment", "value": "装备查询" },
+    { "name": "community_tab_players", "value": "球员信息" },
+
+    { "name": "venues_loading", "value": "场馆加载中..." },
+    { "name": "venues_empty", "value": "附近暂无场馆" },
+    { "name": "venues_distance_unit", "value": "km" },
+    { "name": "venues_price_unit", "value": "元/小时" },
+    { "name": "venues_status_available", "value": "空闲" },
+    { "name": "venues_status_busy", "value": "繁忙" },
+    { "name": "venues_status_full", "value": "已满" },
+
+    { "name": "equipment_loading", "value": "装备加载中..." },
+    { "name": "equipment_empty", "value": "暂无装备分类" },
+    { "name": "equipment_rackets", "value": "球拍" },
+    { "name": "equipment_shoes", "value": "球鞋" },
+    { "name": "equipment_bags", "value": "球包" },
+    { "name": "equipment_shuttlecocks", "value": "羽毛球" },
+
+    { "name": "players_loading", "value": "球员加载中..." },
+    { "name": "players_empty", "value": "暂无球员信息" },
+    { "name": "players_rank_label", "value": "排名" },
+    { "name": "players_score_label", "value": "积分" },
+
+    { "name": "profile_login_title", "value": "欢迎来到 iBadmin" },
+    { "name": "profile_login_subtitle", "value": "登录后享受完整功能" },
+    { "name": "profile_login_button", "value": "华为账号登录" },
+    { "name": "profile_logout_button", "value": "退出登录" },
+    { "name": "profile_user_default_name", "value": "羽毛球爱好者" },
+    { "name": "profile_menu_venues", "value": "我的场馆" },
+    { "name": "profile_menu_equipment", "value": "我的装备" },
+    { "name": "profile_menu_history", "value": "对战记录" },
+    { "name": "profile_menu_settings", "value": "设置" },
+    { "name": "profile_menu_about", "value": "关于" },
+
+    { "name": "privacy_title", "value": "用户协议与隐私政策" },
+    { "name": "privacy_content", "value": "请你仔细阅读《用户协议》和《隐私政策》的全部条款,你可点击按钮同意并继续,或点击不同意以退出应用。" },
+    { "name": "privacy_agree", "value": "同意" },
+    { "name": "privacy_disagree", "value": "不同意" },
+    { "name": "privacy_reject_toast", "value": "需要同意隐私政策才能使用" },
+
+    { "name": "login_success", "value": "登录成功" },
+    { "name": "login_failed", "value": "登录失败,请重试" },
+    { "name": "logout_success", "value": "已退出登录" },
+
+    { "name": "error_network", "value": "网络异常,请检查网络后重试" },
+    { "name": "error_unknown", "value": "未知错误,请稍后重试" },
+    { "name": "action_retry", "value": "重试" },
+    { "name": "action_cancel", "value": "取消" },
+    { "name": "action_confirm", "value": "确定" },
+
+    { "name": "internet_permission_reason", "value": "用于网络请求访问资讯/场馆数据" },
+    { "name": "network_permission_reason", "value": "用于检查当前网络状态" },
+    { "name": "location_permission_reason", "value": "用于查找附近的羽毛球场馆" },
+
+    { "name": "ai_greeting_afternoon", "value": "下午好" },
+    { "name": "ai_greeting_morning", "value": "早上好" },
+    { "name": "ai_greeting_evening", "value": "晚上好" },
+    { "name": "ai_greeting_night", "value": "夜深啦" },
+    { "name": "ai_subtitle_winrate", "value": "你的胜率偏单打" },
+    { "name": "ai_subtitle_inactive", "value": "今天还没运动,要来一局吗?" },
+    { "name": "ai_subtitle_active", "value": "本周已打 3 场,保持状态!" },
+
+    { "name": "ai_insight_label", "value": "今日 AI 洞察" },
+    { "name": "ai_insight_content", "value": "今天天气适宜、你的胜率偏单打、下午 3 点场馆空闲率最低" },
+    { "name": "ai_insight_suggestion_label", "value": "建议:" },
+    { "name": "ai_insight_suggestion_text", "value": "选择 16:00 后单打 + 反手高远球专项" },
+
+    { "name": "ai_summary_tag", "value": "AI摘要" },
+    { "name": "ai_summary_count", "value": "3 句话摘要" },
+    { "name": "ai_smart_news_title", "value": "智能资讯" },
+    { "name": "ai_smart_news_count_suffix", "value": "条 AI 已为你摘要" },
+    { "name": "ai_progress_today", "value": "今日目标" },
+    { "name": "ai_progress_sub", "value": "已读 3/5 资讯" },
+
+    { "name": "profile_menu_theme", "value": "主题外观" },
+    { "name": "profile_theme_auto", "value": "跟随系统" },
+    { "name": "profile_theme_light", "value": "浅色模式" },
+    { "name": "profile_theme_dark", "value": "深色霓虹" }
+  ]
+}
