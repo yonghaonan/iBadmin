@@ -19,6 +19,7 @@ import { ProfileViewModel } from '../../viewmodel/ProfileViewModel';
 import { PrivacyDialog, PrivacyController } from '../../components/PrivacyDialog';
 import { AppMenuItem } from '../../components/AppMenuItem';
 import { AppLogger } from '../../common/AppLogger';
+import { IconPlayer } from '../../common/Icons';
 
 import { ConfigurationConstant } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -105,8 +106,7 @@ export struct ProfilePage {
       Blank().layoutWeight(1)
 
       // 欢迎图标
-      Text('🏸')
-        .fontSize(DesignTokens.FONT_EMOJI_HERO)
+      IconPlayer({ size: DesignTokens.FONT_EMOJI_HERO })
         .margin({ bottom: DesignTokens.SPACING_LG })
 
       Text($r('app.string.profile_login_title'))
@@ -145,13 +145,15 @@ export struct ProfilePage {
     Column() {
       // 用户卡片
       Row() {
-        Text(this.vm.user.avatar !== '' ? this.vm.user.avatar : '🏸')
-          .fontSize(DesignTokens.FONT_EMOJI_XL)
-          .width(DesignTokens.AVATAR_SIZE)
-          .height(DesignTokens.AVATAR_SIZE)
-          .textAlign(TextAlign.Center)
-          .backgroundColor($r('app.color.primary_bg'))
-          .borderRadius(DesignTokens.RADIUS_CAPSULE)
+        Row() {
+          IconPlayer({ size: DesignTokens.FONT_EMOJI_XL })
+        }
+        .width(DesignTokens.AVATAR_SIZE)
+        .height(DesignTokens.AVATAR_SIZE)
+        .justifyContent(FlexAlign.Center)
+        .alignItems(HorizontalAlign.Center)
+        .backgroundColor($r('app.color.primary_bg'))
+        .borderRadius(DesignTokens.RADIUS_CAPSULE)
 
         Column() {
           Text(this.vm.user.nickname !== '' ? this.vm.user.nickname : $r('app.string.profile_user_default_name'))
@@ -184,7 +186,7 @@ export struct ProfilePage {
 
       // 6 项菜单
       AppMenuItem({
-        icon: '🏟️',
+        iconType: 'venue',
         title: $r('app.string.profile_menu_venues'),
         subtitle: '',
         onTap: (): void => {
@@ -193,7 +195,7 @@ export struct ProfilePage {
       })
 
       AppMenuItem({
-        icon: '🎒',
+        iconType: 'equipment',
         title: $r('app.string.profile_menu_equipment'),
         subtitle: '',
         onTap: (): void => {
@@ -202,7 +204,7 @@ export struct ProfilePage {
       })
 
       AppMenuItem({
-        icon: '📊',
+        iconType: 'history',
         title: $r('app.string.profile_menu_history'),
         subtitle: '',
         onTap: (): void => {
@@ -212,7 +214,7 @@ export struct ProfilePage {
 
       // 主题外观菜单（v1.1.2 新增）
       AppMenuItem({
-        icon: this.themeIcon(),
+        iconType: 'theme',
         title: $r('app.string.profile_menu_theme'),
         subtitle: this.themeLabel(),
         onTap: (): void => {
@@ -221,7 +223,7 @@ export struct ProfilePage {
       })
 
       AppMenuItem({
-        icon: '⚙️',
+        iconType: 'settings',
         title: $r('app.string.profile_menu_settings'),
         subtitle: '',
         onTap: (): void => {
@@ -230,7 +232,7 @@ export struct ProfilePage {
       })
 
       AppMenuItem({
-        icon: 'ℹ️',
+        iconType: 'about',
         title: $r('app.string.profile_menu_about'),
         subtitle: '',
         onTap: (): void => {
@@ -261,19 +263,6 @@ export struct ProfilePage {
       top: DesignTokens.SPACING_MD,
       bottom: DesignTokens.SPACING_MD
     })
-  }
-
-  /**
-   * 主题图标（根据当前模式返回对应 emoji）
-   */
-  private themeIcon(): string {
-    if (this.themeMode === AppConstants.THEME_DARK) {
-      return '🌙';
-    }
-    if (this.themeMode === AppConstants.THEME_LIGHT) {
-      return '☀️';
-    }
-    return '🎨';
   }
 
   /**

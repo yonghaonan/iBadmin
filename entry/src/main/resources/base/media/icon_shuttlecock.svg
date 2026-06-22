@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  IconShuttlecock — 羽毛球图标
+  风格：扁平设计 + 渐变 + 动感弧线
+  尺寸：1024x1024 viewBox
+  主色：橙色渐变 #FF8C00 → #FF6F00
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="shuttlecockGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF8C00"/>
+      <stop offset="100%" stop-color="#FF6F00"/>
+    </linearGradient>
+    <linearGradient id="featherGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#FFE0B2"/>
+    </linearGradient>
+    <linearGradient id="trailGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF8C00" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#FF8C00" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FF8C00" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 动感弧线背景 -->
+  <path d="M 150 350 Q 350 250 550 350" stroke="url(#trailGrad)" stroke-width="40" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 200 450 Q 380 380 580 470" stroke="url(#trailGrad)" stroke-width="35" fill="none" stroke-linecap="round" opacity="0.5"/>
+  <path d="M 250 550 Q 410 480 610 580" stroke="url(#trailGrad)" stroke-width="30" fill="none" stroke-linecap="round" opacity="0.3"/>
+
+  <!-- 羽毛球主体（羽毛冠）-->
+  <g transform="translate(512, 380)">
+    <!-- 16 片羽毛 -->
+    <g>
+      <ellipse cx="0" cy="-180" rx="60" ry="120" fill="url(#featherGrad)" stroke="#FF8C00" stroke-width="6"/>
+      <ellipse cx="-50" cy="-170" rx="55" ry="115" fill="url(#featherGrad)" stroke="#FF8C00" stroke-width="6" transform="rotate(-22)"/>
+      <ellipse cx="-95" cy="-145" rx="50" ry="110" fill="url(#featherGrad)" stroke="#FF8C00" stroke-width="6" transform="rotate(-44)"/>
+      <ellipse cx="-130" cy="-105" rx="45" ry="105" fill="url(#featherGrad)" stroke="#FF8C00" stroke-width="6" transform="rotate(-66)"/>
+      <ellipse cx="-150" cy="-55" rx="40" ry="100" fill="url(#featherGrad)" stroke="#FF8C00" stroke-width="6" transform="rotate(-88)"/>
+      <ellipse cx="50" cy="-170" rx="55" ry="115" fill="url(#featherGrad)" stroke="#FF8C00" stroke-width="6" transform="rotate(22)"/>
+      <ellipse cx="95" cy="-145" rx="50" ry="110" fill="url(#featherGrad)" stroke="#FF8C00" stroke-width="6" transform="rotate(44)"/>
+      <ellipse cx="130" cy="-105" rx="45" ry="105" fill="url(#featherGrad)" stroke="#FF8C00" stroke-width="6" transform="rotate(66)"/>
+      <ellipse cx="150" cy="-55" rx="40" ry="100" fill="url(#featherGrad)" stroke="#FF8C00" stroke-width="6" transform="rotate(88)"/>
+    </g>
+    <!-- 中心羽毛束 -->
+    <circle cx="0" cy="-30" r="50" fill="#FFE0B2" stroke="#FF8C00" stroke-width="6"/>
+  </g>
+
+  <!-- 球托（软木底座）-->
+  <g transform="translate(512, 580)">
+    <path d="M -80 -50 Q -90 0 -80 80 L 80 80 Q 90 0 80 -50 Z" fill="url(#shuttlecockGrad)" stroke="#E65100" stroke-width="6"/>
+    <ellipse cx="0" cy="-50" rx="80" ry="20" fill="#FFA726" stroke="#E65100" stroke-width="6"/>
+    <!-- 装饰线 -->
+    <path d="M -65 0 Q 0 -5 65 0" stroke="#FFFFFF" stroke-width="3" fill="none" opacity="0.6"/>
+    <path d="M -65 30 Q 0 25 65 30" stroke="#FFFFFF" stroke-width="3" fill="none" opacity="0.6"/>
+  </g>
+</svg>

@@ -13,6 +13,11 @@ import { VenueItem, VenueStatus } from '../model/VenueModel';
 import { EquipmentItem, EquipmentCategory } from '../model/EquipmentModel';
 import { PlayerItem } from '../model/PlayerModel';
 import { UserInfo } from '../model/UserModel';
+import {
+  UserActivity,
+  WeatherInfo,
+  VenueAvailability
+} from '../model/SportsDataModel';
 
 const MOCK_LATENCY_MS: number = 300;
 
@@ -257,5 +262,47 @@ export class MockDataService {
       loginAt: Date.now()
     };
     return delay(user, 500);
+  }
+
+  /**
+   * v1.1.3 新增：用户运动活动数据
+   */
+  public static async getUserActivity(): Promise<UserActivity> {
+    const data: UserActivity = {
+      weeklyMatchCount: 3,
+      singlesWinRate: 0.65,
+      doublesWinRate: 0.52,
+      lastMatchAt: Date.now() - 86400_000 * 2,
+      preferredStyle: 'attacking',
+      todayReadNews: 3,
+      todayTargetNews: 5
+    };
+    return delay(data);
+  }
+
+  /**
+   * v1.1.3 新增：天气信息
+   */
+  public static async getWeather(): Promise<WeatherInfo> {
+    const data: WeatherInfo = {
+      isSuitable: true,
+      condition: 'sunny',
+      conditionText: '晴',
+      temperatureC: 22,
+      humidity: 55
+    };
+    return delay(data);
+  }
+
+  /**
+   * v1.1.3 新增：场馆空闲率
+   */
+  public static async getVenueAvailability(): Promise<VenueAvailability> {
+    const data: VenueAvailability = {
+      morningFreeRate: 0.45,
+      afternoonFreeRate: 0.30,
+      eveningFreeRate: 0.60
+    };
+    return delay(data);
   }
 }

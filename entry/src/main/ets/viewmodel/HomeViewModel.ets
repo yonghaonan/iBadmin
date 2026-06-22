@@ -17,6 +17,9 @@ import { NewsClient } from '../cloud/NewsClient';
 import { AppConstants } from '../common/Constants';
 import { AppLogger } from '../common/AppLogger';
 import { ErrorFormatter } from '../common/ErrorFormatter';
+import { MockDataService } from '../cloud/MockDataService';
+import { AIInsightEngine } from './AIInsightEngine';
+import { AIInsightResult } from '../model/SportsDataModel';
 
 export enum LoadState {
   IDLE = 'idle',
@@ -31,6 +34,7 @@ export class HomeViewModel {
   public state: LoadState = LoadState.IDLE;
   public newsList: NewsItem[] = [];
   public errorMessage: string = '';
+  public aiInsight: AIInsightResult | null = null;
 
   /**
    * 加载资讯列表（首页入口）
@@ -44,10 +48,31 @@ export class HomeViewModel {
       this.newsList = data;
       this.state = data.length === 0 ? LoadState.EMPTY : LoadState.LOADED;
       AppLogger.info('HomeViewModel', `Loaded ${data.length} news items`);
+      // v1.1.3: 并行加载 AI 洞察
+      this.loadAIInsight();
     } catch (e) {
       this.errorMessage = ErrorFormatter.format('HomeViewModel.loadNews', e);
       this.state = LoadState.ERROR;
       AppLogger.error('HomeViewModel', this.errorMessage);
+    }
+  }
+
+  /**
+   * v1.1.3: 加载 AI 洞察（基于规则引擎）
+   */
+  public async loadAIInsight(): Promise<void> {
+    try {
+      const [user, weather, venue] = await Promise.all([
+        MockDataService.getUserActivity(),
+        MockDataService.getWeather(),
+        MockDataService.getVenueAvailability()
+      ]);
+      this.aiInsight = AIInsightEngine.generate({ user, weather, venue });
+      AppLogger.info('HomeViewModel', `AI insight generated: ${this.aiInsight.insightContent}`);
+    } catch (e) {
+      AppLogger.error('HomeViewModel', `AI insight failed: ${JSON.stringify(e)}`);
+      // 失败时使用 null，UI 层显示静态 fallback
+      this.aiInsight = null;
     }
   }
 

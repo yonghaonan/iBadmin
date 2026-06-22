@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  IconAI — AI 智能图标
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFB74D"/>
+      <stop offset="50%" stop-color="#FF8C00"/>
+      <stop offset="100%" stop-color="#FF6F00"/>
+    </linearGradient>
+    <radialGradient id="aiGlow">
+      <stop offset="0%" stop-color="#FF8C00" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FF8C00" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 光晕背景 -->
+  <circle cx="512" cy="512" r="450" fill="url(#aiGlow)"/>
+
+  <!-- 中心大脑/芯片 -->
+  <g transform="translate(512, 512)">
+    <!-- 主圆 -->
+    <circle cx="0" cy="0" r="200" fill="url(#aiGrad)" stroke="#E65100" stroke-width="10"/>
+
+    <!-- 内部电路 -->
+    <circle cx="0" cy="0" r="80" fill="none" stroke="#FFFFFF" stroke-width="8" opacity="0.9"/>
+    <circle cx="0" cy="0" r="30" fill="#FFFFFF" opacity="0.9"/>
+
+    <!-- 6 条电路引脚 -->
+    <line x1="-200" y1="0" x2="-280" y2="0" stroke="#E65100" stroke-width="12" stroke-linecap="round"/>
+    <line x1="200" y1="0" x2="280" y2="0" stroke="#E65100" stroke-width="12" stroke-linecap="round"/>
+    <line x1="-140" y1="-140" x2="-200" y2="-200" stroke="#E65100" stroke-width="12" stroke-linecap="round"/>
+    <line x1="140" y1="-140" x2="200" y2="-200" stroke="#E65100" stroke-width="12" stroke-linecap="round"/>
+    <line x1="-140" y1="140" x2="-200" y2="200" stroke="#E65100" stroke-width="12" stroke-linecap="round"/>
+    <line x1="140" y1="140" x2="200" y2="200" stroke="#E65100" stroke-width="12" stroke-linecap="round"/>
+
+    <!-- 端点小圆 -->
+    <circle cx="-280" cy="0" r="16" fill="#E65100"/>
+    <circle cx="280" cy="0" r="16" fill="#E65100"/>
+    <circle cx="-200" cy="-200" r="16" fill="#E65100"/>
+    <circle cx="200" cy="-200" r="16" fill="#E65100"/>
+    <circle cx="-200" cy="200" r="16" fill="#E65100"/>
+    <circle cx="200" cy="200" r="16" fill="#E65100"/>
+  </g>
+
+  <!-- 闪烁星点 -->
+  <g fill="#FFFFFF">
+    <circle cx="200" cy="220" r="14" opacity="0.9"/>
+    <circle cx="800" cy="200" r="18" opacity="0.9"/>
+    <circle cx="850" cy="500" r="12" opacity="0.9"/>
+    <circle cx="180" cy="780" r="16" opacity="0.9"/>
+    <circle cx="780" cy="820" r="14" opacity="0.9"/>
+    <circle cx="500" cy="150" r="10" opacity="0.9"/>
+    <circle cx="500" cy="880" r="10" opacity="0.9"/>
+  </g>
+
+  <!-- "AI" 文字 -->
+  <text x="512" y="560" font-family="Arial" font-size="140" font-weight="900" fill="#FFFFFF" text-anchor="middle">AI</text>
+</svg>

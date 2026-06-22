@@ -16,21 +16,24 @@
 import { DesignTokens } from '../common/DesignTokens';
 import { AppConstants } from '../common/Constants';
 import { AppLogger } from '../common/AppLogger';
+import { IconShuttlecock, IconVenue, IconPlayer } from '../common/Icons';
 
 import { HomePage } from './home/HomePage';
 import { CommunityPage } from './community/CommunityPage';
 import { ProfilePage } from './profile/ProfilePage';
 
+type TabIconType = 'home' | 'community' | 'profile';
+
 interface TabItem {
   readonly index: number;
   readonly label: string;
-  readonly icon: string;
+  readonly iconType: TabIconType;
 }
 
 const TAB_ITEMS: readonly TabItem[] = [
-  { index: 0, label: '首页', icon: '🏠' },
-  { index: 1, label: '社区', icon: '👥' },
-  { index: 2, label: '我的', icon: '👤' }
+  { index: 0, label: '首页', iconType: 'home' },
+  { index: 1, label: '社区', iconType: 'community' },
+  { index: 2, label: '我的', iconType: 'profile' }
 ];
 
 @Component
@@ -67,9 +70,20 @@ export struct MainTabs {
   }
 
   @Builder
+  private renderTabIcon(iconType: TabIconType, isActive: boolean): void {
+    if (iconType === 'home') {
+      IconShuttlecock({ size: DesignTokens.ICON_SIZE })
+    } else if (iconType === 'community') {
+      IconVenue({ size: DesignTokens.ICON_SIZE })
+    } else {
+      IconPlayer({ size: DesignTokens.ICON_SIZE })
+    }
+  }
+
+  @Builder
   private tabBarBuilder(item: TabItem): void {
     Column() {
-      // 药丸 + emoji（选中态：橙色背景）
+      // 药丸 + SVG 图标（选中态：橙色背景）
       Stack() {
         // 选中态的橙色药丸
         if (this.activeIndex === item.index) {
@@ -81,13 +95,13 @@ export struct MainTabs {
             .hitTestBehavior(HitTestMode.Transparent)
         }
 
-        // emoji（选中态白色，未选中灰色）
-        Text(item.icon)
-          .fontSize(DesignTokens.FONT_EMOJI)
-          .fontColor(this.activeIndex === item.index ? $r('app.color.text_on_primary') : $r('app.color.tab_inactive'))
+        // SVG 图标（选中态显示在橙色药丸上）
+        this.renderTabIcon(item.iconType, this.activeIndex === item.index)
       }
       .width(DesignTokens.TAB_PILL_WIDTH)
       .height(DesignTokens.TAB_PILL_HEIGHT)
+      .justifyContent(FlexAlign.Center)
+      .alignItems(HorizontalAlign.Center)
 
       // 标签
       Text(item.label)

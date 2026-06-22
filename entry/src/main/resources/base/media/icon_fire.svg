@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  IconFire — 火焰图标（活跃指示）
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="fireGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFD54F"/>
+      <stop offset="40%" stop-color="#FF8C00"/>
+      <stop offset="100%" stop-color="#E65100"/>
+    </linearGradient>
+    <linearGradient id="fireInnerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#FFE082"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 外层火焰 -->
+  <path d="M 512 150
+           Q 350 280 280 460
+           Q 220 640 350 780
+           Q 420 870 512 870
+           Q 604 870 674 780
+           Q 804 640 744 460
+           Q 700 350 620 280
+           Q 580 340 600 400
+           Q 560 380 540 320
+           Q 530 250 512 150 Z"
+        fill="url(#fireGrad)" stroke="#BF360C" stroke-width="10" stroke-linejoin="round"/>
+
+  <!-- 内层火焰 -->
+  <path d="M 512 380
+           Q 440 460 420 560
+           Q 400 660 470 730
+           Q 500 760 512 760
+           Q 524 760 554 730
+           Q 624 660 604 560
+           Q 584 460 540 410
+           Q 530 440 540 470
+           Q 520 460 512 420 Z"
+        fill="url(#fireInnerGrad)"/>
+</svg>

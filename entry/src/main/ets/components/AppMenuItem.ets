@@ -10,19 +10,38 @@
  */
 
 import { DesignTokens } from '../common/DesignTokens';
+import { IconVenue, IconEquipment, IconFire, IconAI, IconShuttlecock, IconPlayer } from '../common/Icons';
+
+export type MenuIconType = 'venue' | 'equipment' | 'history' | 'theme' | 'settings' | 'about';
 
 @Component
 export struct AppMenuItem {
-  public icon: string = '';
+  public iconType: MenuIconType = 'venue';
+  public iconFallback: string = '';
   public title: ResourceStr = '';
   public subtitle: ResourceStr = '';
   public onTap: () => void = (): void => {};
 
+  @Builder
+  private renderMenuIcon(): void {
+    if (this.iconType === 'venue') {
+      IconVenue({ size: DesignTokens.ICON_ROW_SIZE })
+    } else if (this.iconType === 'equipment') {
+      IconEquipment({ size: DesignTokens.ICON_ROW_SIZE })
+    } else if (this.iconType === 'history') {
+      IconFire({ size: DesignTokens.ICON_ROW_SIZE })
+    } else if (this.iconType === 'theme') {
+      IconAI({ size: DesignTokens.ICON_ROW_SIZE })
+    } else if (this.iconType === 'settings') {
+      IconShuttlecock({ size: DesignTokens.ICON_ROW_SIZE })
+    } else {
+      IconPlayer({ size: DesignTokens.ICON_ROW_SIZE })
+    }
+  }
+
   public build(): void {
     Row() {
-      Text(this.icon)
-        .fontSize(DesignTokens.FONT_EMOJI)
-        .width(DesignTokens.ICON_ROW_SIZE)
+      this.renderMenuIcon()
 
       Column() {
         Text(this.title)

@@ -9,18 +9,32 @@
  * 用于社区页"装备查询"Tab 的 2x2 网格
  */
 
-import { EquipmentItem, EquipmentModel } from '../model/EquipmentModel';
+import { EquipmentItem, EquipmentModel, EquipmentCategory } from '../model/EquipmentModel';
 import { DesignTokens } from '../common/DesignTokens';
+import { IconEquipment, IconRacket } from '../common/Icons';
 
 @Component
 export struct EquipmentCategoryCard {
   public item: EquipmentItem = new EquipmentModel();
   public onTap: (item: EquipmentItem) => void = (item: EquipmentItem): void => {};
 
+  /**
+   * 根据装备分类返回对应 SVG 图标
+   */
+  @Builder
+  private renderCategoryIcon(): void {
+    if (this.item.category === EquipmentCategory.RACKETS) {
+      IconRacket({ size: DesignTokens.FONT_EMOJI_XL })
+    } else if (this.item.category === EquipmentCategory.BAGS) {
+      IconEquipment({ size: DesignTokens.FONT_EMOJI_XL })
+    } else {
+      IconEquipment({ size: DesignTokens.FONT_EMOJI_XL })
+    }
+  }
+
   public build(): void {
     Column() {
-      Text(this.item.icon ?? '🏸')
-        .fontSize(DesignTokens.FONT_EMOJI_XL)
+      this.renderCategoryIcon()
         .margin({ bottom: DesignTokens.SPACING_SM })
 
       Text(this.item.name ?? '')

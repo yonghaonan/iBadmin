@@ -11,6 +11,7 @@
 
 import { PlayerItem, PlayerModel } from '../model/PlayerModel';
 import { DesignTokens } from '../common/DesignTokens';
+import { IconPlayer, IconFire } from '../common/Icons';
 
 @Component
 export struct PlayerCard {
@@ -19,9 +20,8 @@ export struct PlayerCard {
 
   public build(): void {
     Column() {
-      // 头像（emoji）
-      Text(this.item.avatar ?? '🏸')
-        .fontSize(DesignTokens.FONT_EMOJI_XL)
+      // 头像（SVG 图标）
+      IconPlayer({ size: DesignTokens.FONT_EMOJI_XL })
         .margin({ bottom: DesignTokens.SPACING_SM })
 
       // 姓名
@@ -39,9 +39,12 @@ export struct PlayerCard {
           .fontSize(DesignTokens.FONT_CAPTION)
           .fontColor($r('app.color.text_hint'))
 
-        Text(`🏆 #${this.item.ranking ?? 0}`)
-          .fontSize(DesignTokens.FONT_CAPTION)
-          .fontColor($r('app.color.warning'))
+        Row() {
+          IconFire({ size: DesignTokens.FONT_TINY })
+          Text(` #${this.item.ranking ?? 0}`)
+            .fontSize(DesignTokens.FONT_CAPTION)
+            .fontColor($r('app.color.warning'))
+        }
       }
       .margin({ bottom: DesignTokens.SPACING_XXS })
 

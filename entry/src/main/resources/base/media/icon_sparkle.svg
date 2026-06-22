@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  IconSparkle — 闪光图标
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="sparkleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD54F"/>
+      <stop offset="100%" stop-color="#FF8C00"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 主星 -->
+  <path d="M 512 100 L 580 380 L 860 450 L 580 520 L 512 800 L 444 520 L 164 450 L 444 380 Z" fill="url(#sparkleGrad)" stroke="#E65100" stroke-width="10" stroke-linejoin="round"/>
+
+  <!-- 右上小星 -->
+  <path d="M 800 200 L 830 290 L 920 320 L 830 350 L 800 440 L 770 350 L 680 320 L 770 290 Z" fill="#FFB74D" stroke="#E65100" stroke-width="6" stroke-linejoin="round"/>
+
+  <!-- 左下小星 -->
+  <path d="M 250 750 L 275 820 L 345 845 L 275 870 L 250 940 L 225 870 L 155 845 L 225 820 Z" fill="#FFB74D" stroke="#E65100" stroke-width="6" stroke-linejoin="round"/>
+
+  <!-- 闪烁点 -->
+  <circle cx="150" cy="200" r="14" fill="#FFD54F"/>
+  <circle cx="900" cy="600" r="14" fill="#FFD54F"/>
+  <circle cx="200" cy="500" r="10" fill="#FFB74D"/>
+  <circle cx="850" cy="850" r="10" fill="#FFB74D"/>
+</svg>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  IconRacket — 羽毛球拍图标
+  风格：动感线条 + 渐变
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="racketGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF8C00"/>
+      <stop offset="100%" stop-color="#FF6F00"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 动感弧线（击球线）-->
+  <path d="M 750 200 Q 850 350 800 500" stroke="#FF8C00" stroke-width="12" fill="none" stroke-linecap="round" opacity="0.5"/>
+  <path d="M 800 250 Q 880 380 830 520" stroke="#FF8C00" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.3"/>
+
+  <!-- 球拍头（椭圆框）-->
+  <g transform="translate(420, 380) rotate(-30)">
+    <ellipse cx="0" cy="0" rx="220" ry="280" fill="none" stroke="url(#racketGrad)" stroke-width="50" stroke-linecap="round"/>
+
+    <!-- 拍线网格 -->
+    <line x1="-180" y1="-100" x2="180" y2="-100" stroke="#FF8C00" stroke-width="6" opacity="0.7"/>
+    <line x1="-180" y1="-50" x2="180" y2="-50" stroke="#FF8C00" stroke-width="6" opacity="0.7"/>
+    <line x1="-180" y1="0" x2="180" y2="0" stroke="#FF8C00" stroke-width="6" opacity="0.7"/>
+    <line x1="-180" y1="50" x2="180" y2="50" stroke="#FF8C00" stroke-width="6" opacity="0.7"/>
+    <line x1="-180" y1="100" x2="180" y2="100" stroke="#FF8C00" stroke-width="6" opacity="0.7"/>
+    <line x1="-130" y1="-220" x2="-130" y2="220" stroke="#FF8C00" stroke-width="6" opacity="0.7"/>
+    <line x1="-65" y1="-240" x2="-65" y2="240" stroke="#FF8C00" stroke-width="6" opacity="0.7"/>
+    <line x1="0" y1="-250" x2="0" y2="250" stroke="#FF8C00" stroke-width="6" opacity="0.7"/>
+    <line x1="65" y1="-240" x2="65" y2="240" stroke="#FF8C00" stroke-width="6" opacity="0.7"/>
+    <line x1="130" y1="-220" x2="130" y2="220" stroke="#FF8C00" stroke-width="6" opacity="0.7"/>
+  </g>
+
+  <!-- 拍杆 -->
+  <g transform="translate(560, 700) rotate(-30)">
+    <rect x="-22" y="0" width="44" height="280" rx="22" fill="url(#racketGrad)"/>
+  </g>
+
+  <!-- 拍手 -->
+  <g transform="translate(640, 920) rotate(-30)">
+    <rect x="-30" y="0" width="60" height="100" rx="30" fill="url(#racketGrad)"/>
+    <rect x="-32" y="50" width="64" height="20" rx="10" fill="#E65100"/>
+    <rect x="-32" y="80" width="64" height="20" rx="10" fill="#E65100"/>
+  </g>
+</svg>

@@ -26,6 +26,7 @@ import { EmptyState, EmptyStateType } from '../../components/EmptyState';
 import { AIInsightCard } from '../../components/AIInsightCard';
 import { AIAssistantButton } from '../../components/AIAssistantButton';
 import { ProgressRing } from '../../components/ProgressRing';
+import { IconAI, IconRefresh } from '../../common/Icons';
 
 
 @Component
@@ -49,12 +50,18 @@ export struct HomePage {
         // 顶部智能问候 + AI 助理按钮
         Row() {
           Column() {
-            Text($r('app.string.ai_greeting_afternoon') + ' 👋')
-              .fontSize(DesignTokens.FONT_H1)
-              .fontWeight(DesignTokens.WEIGHT_EXTRA_BOLD)
-              .fontColor($r('app.color.text_primary'))
+            Row() {
+              Text(this.vm.aiInsight?.greeting ?? $r('app.string.ai_greeting_afternoon'))
+                .fontSize(DesignTokens.FONT_H1)
+                .fontWeight(DesignTokens.WEIGHT_EXTRA_BOLD)
+                .fontColor($r('app.color.text_primary'))
+              Text(' 👋')
+                .fontSize(DesignTokens.FONT_H1)
+                .fontWeight(DesignTokens.WEIGHT_EXTRA_BOLD)
+                .fontColor($r('app.color.text_primary'))
+            }
 
-            Text($r('app.string.ai_subtitle_winrate'))
+            Text(this.vm.aiInsight?.subtitle ?? $r('app.string.ai_subtitle_winrate'))
               .fontSize(DesignTokens.FONT_SMALL)
               .fontColor($r('app.color.text_hint'))
               .margin({ top: DesignTokens.SPACING_XXS })
@@ -101,27 +108,30 @@ export struct HomePage {
           // 已加载：AI 洞察 + 今日目标 + 智能资讯
           Scroll() {
             Column() {
-              // AI 洞察 Hero 卡
-              AIInsightCard()
+              // AI 洞察 Hero 卡（动态文案）
+              AIInsightCard({
+                insightContent: this.vm.aiInsight?.insightContent ?? $r('app.string.ai_insight_content'),
+                suggestionText: this.vm.aiInsight?.suggestionText ?? $r('app.string.ai_insight_suggestion_text')
+              })
                 .margin({ bottom: DesignTokens.SPACING_MD })
 
               // 今日目标进度环 + 智能资讯标题（并排）
               Row() {
                 Column() {
-                  Text($r('app.string.ai_progress_today'))
+                  Text(this.vm.aiInsight?.progressLabel ?? $r('app.string.ai_progress_today'))
                     .fontSize(DesignTokens.FONT_BODY)
                     .fontWeight(DesignTokens.WEIGHT_HEAVY)
                     .fontColor($r('app.color.text_primary'))
                     .margin({ bottom: DesignTokens.SPACING_XXS })
 
-                  Text($r('app.string.ai_progress_sub'))
+                  Text(this.vm.aiInsight?.progressSub ?? $r('app.string.ai_progress_sub'))
                     .fontSize(DesignTokens.FONT_CAPTION)
                     .fontColor($r('app.color.text_hint'))
                 }
                 .layoutWeight(1)
                 .alignItems(HorizontalAlign.Start)
 
-                ProgressRing({ progress: 60, label: '%' })
+                ProgressRing({ progress: this.vm.aiInsight?.progressPercent ?? 0, label: '%' })
               }
               .width('100%')
               .padding(DesignTokens.SPACING_MD)
@@ -135,14 +145,23 @@ export struct HomePage {
 
               // 智能资讯标题
               Row() {
-                Text($r('app.string.ai_smart_news_title') + ' (' + (this.vm.newsList.length).toString() + ')' + $r('app.string.ai_smart_news_count_suffix'))
-                  .fontSize(DesignTokens.FONT_H3)
-                  .fontWeight(DesignTokens.WEIGHT_HEAVY)
-                  .fontColor($r('app.color.text_primary'))
-                  .layoutWeight(1)
+                Row() {
+                  Text($r('app.string.ai_smart_news_title'))
+                    .fontSize(DesignTokens.FONT_H3)
+                    .fontWeight(DesignTokens.WEIGHT_HEAVY)
+                    .fontColor($r('app.color.text_primary'))
+                  Text(` (${this.vm.newsList.length.toString()})`)
+                    .fontSize(DesignTokens.FONT_H3)
+                    .fontWeight(DesignTokens.WEIGHT_HEAVY)
+                    .fontColor($r('app.color.text_primary'))
+                  Text($r('app.string.ai_smart_news_count_suffix'))
+                    .fontSize(DesignTokens.FONT_H3)
+                    .fontWeight(DesignTokens.WEIGHT_HEAVY)
+                    .fontColor($r('app.color.text_primary'))
+                }
+                .layoutWeight(1)
 
-                Text('🔄')
-                  .fontSize(DesignTokens.FONT_EMOJI)
+                IconRefresh({ size: DesignTokens.FONT_EMOJI })
                   .onClick((): void => {
                     this.vm.refresh();
                   })
@@ -186,8 +205,7 @@ export struct HomePage {
       // AI 语音输入浮动按钮（右下角）
       if (this.vm.state === LoadState.LOADED) {
         Column() {
-          Text('🎙️')
-            .fontSize(24)
+          IconAI({ size: DesignTokens.FONT_EMOJI_LG })
         }
         .width(DesignTokens.AI_FAB_SIZE)
         .height(DesignTokens.AI_FAB_SIZE)

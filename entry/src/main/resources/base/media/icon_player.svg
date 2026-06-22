@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  IconPlayer — 球员图标
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="playerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF8C00"/>
+      <stop offset="100%" stop-color="#FF6F00"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 球员剪影 + 球拍 -->
+  <g transform="translate(512, 512)">
+    <!-- 头部 -->
+    <circle cx="0" cy="-200" r="100" fill="url(#playerGrad)" stroke="#E65100" stroke-width="8"/>
+
+    <!-- 身体 -->
+    <path d="M -120 -100 Q -150 0 -120 150 L 120 150 Q 150 0 120 -100 Z" fill="url(#playerGrad)" stroke="#E65100" stroke-width="8"/>
+
+    <!-- 手臂（举起球拍）-->
+    <g transform="rotate(-30)">
+      <rect x="100" y="-100" width="40" height="200" rx="20" fill="url(#playerGrad)" stroke="#E65100" stroke-width="6"/>
+    </g>
+    <g transform="rotate(30)">
+      <rect x="-140" y="-100" width="40" height="200" rx="20" fill="url(#playerGrad)" stroke="#E65100" stroke-width="6"/>
+    </g>
+
+    <!-- 球拍（举起的右臂上方）-->
+    <g transform="translate(280, -250) rotate(20)">
+      <ellipse cx="0" cy="0" rx="50" ry="70" fill="none" stroke="#E65100" stroke-width="12"/>
+      <line x1="0" y1="55" x2="0" y2="200" stroke="#E65100" stroke-width="12" stroke-linecap="round"/>
+      <!-- 拍线 -->
+      <line x1="-35" y1="-20" x2="35" y2="-20" stroke="#E65100" stroke-width="3" opacity="0.6"/>
+      <line x1="-35" y1="0" x2="35" y2="0" stroke="#E65100" stroke-width="3" opacity="0.6"/>
+      <line x1="-35" y1="20" x2="35" y2="20" stroke="#E65100" stroke-width="3" opacity="0.6"/>
+      <line x1="-15" y1="-50" x2="-15" y2="40" stroke="#E65100" stroke-width="3" opacity="0.6"/>
+      <line x1="15" y1="-50" x2="15" y2="40" stroke="#E65100" stroke-width="3" opacity="0.6"/>
+    </g>
+
+    <!-- 腿 -->
+    <rect x="-90" y="150" width="50" height="180" rx="20" fill="url(#playerGrad)" stroke="#E65100" stroke-width="6"/>
+    <rect x="40" y="150" width="50" height="180" rx="20" fill="url(#playerGrad)" stroke="#E65100" stroke-width="6"/>
+
+    <!-- 奖牌（胸前）-->
+    <circle cx="0" cy="20" r="40" fill="#FFD700" stroke="#FFA000" stroke-width="6"/>
+    <text x="0" y="35" font-family="Arial" font-size="40" fill="#FF8C00" text-anchor="middle" font-weight="bold">★</text>
+  </g>
+</svg>

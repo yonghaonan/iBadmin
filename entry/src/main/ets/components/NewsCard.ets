@@ -13,6 +13,7 @@
 import { NewsItem, NewsModel } from '../model/NewsModel';
 import { DesignTokens } from '../common/DesignTokens';
 import { AppUtils } from '../common/Utils';
+import { IconShuttlecock, IconSparkle } from '../common/Icons';
 
 @Component
 export struct NewsCard {
@@ -25,10 +26,12 @@ export struct NewsCard {
       // AI 摘要标签（右上角）
       if (this.showAiTag) {
         Row() {
-          Text('✨ ' + $r('app.string.ai_summary_tag'))
+          IconSparkle({ size: 14 })
+          Text($r('app.string.ai_summary_tag'))
             .fontSize(DesignTokens.FONT_TINY)
             .fontWeight(DesignTokens.WEIGHT_HEAVY)
             .fontColor($r('app.color.text_on_primary'))
+            .margin({ left: DesignTokens.SPACING_XXS })
         }
         .padding({
           left: DesignTokens.SPACING_XS,
@@ -44,12 +47,13 @@ export struct NewsCard {
       }
 
       Row() {
-        // 左侧 emoji 封面
-        Text(this.item.cover ?? '🏸')
-          .fontSize(DesignTokens.FONT_EMOJI_LG)
+        Row() {
+        // 左侧 SVG 图标封面
+        IconShuttlecock({ size: DesignTokens.ICON_BOX_SIZE })
           .width(DesignTokens.ICON_BOX_SIZE)
           .height(DesignTokens.ICON_BOX_SIZE)
-          .textAlign(TextAlign.Center)
+          .justifyContent(FlexAlign.Center)
+          .alignItems(HorizontalAlign.Center)
 
         // 右侧内容
         Column() {

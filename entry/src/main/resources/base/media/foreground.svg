@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  AppIcon Foreground — v1.1.3 新设计
+  1024x1024 SVG 前景：白色羽毛球 + 动感光晕
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="featherGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#FFE0B2"/>
+    </linearGradient>
+    <linearGradient id="trailGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF8C00" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#FF8C00" stop-opacity="0.8"/>
+    </linearGradient>
+    <radialGradient id="glowGrad">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 中心光晕 -->
+  <circle cx="512" cy="512" r="400" fill="url(#glowGrad)"/>
+
+  <!-- 左侧动感弧线（飞行轨迹）-->
+  <path d="M 80 380 Q 280 280 480 380" stroke="url(#trailGrad)" stroke-width="20" fill="none" stroke-linecap="round" opacity="0.8"/>
+  <path d="M 60 460 Q 260 380 460 460" stroke="url(#trailGrad)" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- 羽毛球主体（羽毛冠，向右上倾斜 20 度）-->
+  <g transform="translate(512, 380) rotate(15)">
+    <!-- 10 片羽毛（足够呈现羽毛质感）-->
+    <ellipse cx="0" cy="-160" rx="55" ry="110" fill="url(#featherGrad)" stroke="#FF8C00" stroke-width="6"/>
+    <ellipse cx="-45" cy="-150" rx="50" ry="105" fill="url(#featherGrad)" stroke="#FF8C00" stroke-width="6" transform="rotate(-22)"/>
+    <ellipse cx="-85" cy="-125" rx="45" ry="100" fill="url(#featherGrad)" stroke="#FF8C00" stroke-width="6" transform="rotate(-44)"/>
+    <ellipse cx="-115" cy="-85" rx="40" ry="95" fill="url(#featherGrad)" stroke="#FF8C00" stroke-width="6" transform="rotate(-66)"/>
+    <ellipse cx="45" cy="-150" rx="50" ry="105" fill="url(#featherGrad)" stroke="#FF8C00" stroke-width="6" transform="rotate(22)"/>
+    <ellipse cx="85" cy="-125" rx="45" ry="100" fill="url(#featherGrad)" stroke="#FF8C00" stroke-width="6" transform="rotate(44)"/>
+    <ellipse cx="115" cy="-85" rx="40" ry="95" fill="url(#featherGrad)" stroke="#FF8C00" stroke-width="6" transform="rotate(66)"/>
+
+    <!-- 中心羽毛束 -->
+    <circle cx="0" cy="-30" r="45" fill="#FFE0B2" stroke="#FF8C00" stroke-width="6"/>
+  </g>
+
+  <!-- 球托（软木底座）-->
+  <g transform="translate(512, 580) rotate(15)">
+    <path d="M -75 -45 Q -85 0 -75 75 L 75 75 Q 85 0 75 -45 Z" fill="#FFFFFF" stroke="#FF8C00" stroke-width="8"/>
+    <ellipse cx="0" cy="-45" rx="75" ry="18" fill="#FFE0B2" stroke="#FF8C00" stroke-width="6"/>
+    <!-- 装饰线 -->
+    <path d="M -60 0 Q 0 -5 60 0" stroke="#FF8C00" stroke-width="3" fill="none" opacity="0.5"/>
+    <path d="M -60 30 Q 0 25 60 30" stroke="#FF8C00" stroke-width="3" fill="none" opacity="0.5"/>
+    <!-- 中心红心（羽毛头圆点）-->
+    <circle cx="0" cy="-45" r="12" fill="#E65100"/>
+    <circle cx="0" cy="-45" r="6" fill="#FFFFFF" opacity="0.8"/>
+  </g>
+
+  <!-- 右下闪电光晕（小装饰）-->
+  <g transform="translate(800, 800)">
+    <path d="M 0 0 L 30 -10 L 20 10 L 50 0 L 30 30 L 40 50 L 0 30 L -20 50 L -10 30 Z" fill="#FFFFFF" opacity="0.4"/>
+  </g>
+</svg>

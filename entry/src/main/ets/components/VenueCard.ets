@@ -11,6 +11,7 @@
 
 import { VenueItem, VenueStatus, VenueModel } from '../model/VenueModel';
 import { DesignTokens } from '../common/DesignTokens';
+import { IconVenue } from '../common/Icons';
 
 @Component
 export struct VenueCard {
@@ -20,12 +21,14 @@ export struct VenueCard {
   public build(): void {
     Column() {
       Row() {
-        // 左侧 emoji 封面
-        Text(this.item.cover ?? '🏟️')
-          .fontSize(DesignTokens.FONT_EMOJI_LG)
-          .width(DesignTokens.ICON_BOX_SIZE)
-          .height(DesignTokens.ICON_BOX_SIZE)
-          .textAlign(TextAlign.Center)
+        // 左侧 SVG 图标封面
+        Row() {
+          IconVenue({ size: DesignTokens.ICON_BOX_SIZE })
+        }
+        .width(DesignTokens.ICON_BOX_SIZE)
+        .height(DesignTokens.ICON_BOX_SIZE)
+        .justifyContent(FlexAlign.Center)
+        .alignItems(HorizontalAlign.Center)
 
         // 中间信息
         Column() {

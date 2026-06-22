@@ -2,6 +2,81 @@
 
 所有 iBadmin 项目的重要变更记录在此文件。
 
+## [v1.1.3] - 2026-06-18 — UI 完善 + AI 洞察接入 + 图标重设计
+
+### 概述
+
+v1.1.2.3 推送后真机验证发现 4 类问题：界面含 'object Object' 字样、AI 洞察仍是静态文本、页面 emoji 图标不美观、App 图标无品牌辨识度。本版本一次性解决，同时接入本地 AI 规则引擎（5 条核心规则）。
+
+### 修复（Fix）
+
+#### 1. 修复 3 处 'object Object' 字样
+
+**根因**：`Text()` 参数类型为 `ResourceStr | string`，但 `' ' + $r(...)` 拼接会调用 `Resource.toString()` 返回 `[object Object]`。
+
+| 文件 | 行 | 修复方式 |
+|------|----|---------|
+| `components/NewsCard.ets` | 28 | 拆分为 Row { IconSparkle + Text($r(...)) } |
+| `pages/home/HomePage.ets` | 52 | 拆分为 Row { Text($r(...)) + Text(' 👋') } |
+| `pages/home/HomePage.ets` | 138 | 拆分为 Row { 3 个 Text 子项 } |
+
+#### 2. 接入 AI 洞察能力（本地规则引擎）
+
+- **新增** `model/SportsDataModel.ets`：体育数据模型（UserActivity / WeatherInfo / VenueAvailability / AIInsightResult）
+- **新增** `viewmodel/AIInsightEngine.ets`：5 条规则的本地引擎
+  - 规则 1：胜率偏好 → 单/双打专长推断
+  - 规则 2：天气适宜性 → 运动提示
+  - 规则 3：本周场次 ≥ 3 → 活跃状态
+  - 规则 4：闲置天数 > 3 → 提示「已经 N 天没运动了」
+  - 规则 5：场馆空闲时段 → 推荐最佳时段 + 偏好打法
+- **修改** `cloud/MockDataService.ets`：新增 3 个 Mock 方法（getUserActivity / getWeather / getVenueAvailability）
+- **修改** `viewmodel/HomeViewModel.ets`：新增 `aiInsight: AIInsightResult | null` 字段 + `loadAIInsight()` 方法
+- **修改** `pages/home/HomePage.ets`：智能问候 / 副标题 / 进度环全部从 aiInsight 动态读取
+
+#### 3. SVG 图标库设计
+
+- **新增** `common/Icons.ets`：统一图标组件库（9 个图标）
+- **新增 9 个 SVG 资源**：icon_shuttlecock / icon_racket / icon_venue / icon_equipment / icon_player / icon_ai / icon_sparkle / icon_refresh / icon_fire
+- **设计风格**：扁平 + 渐变 + 动感线条，统一 #FF8C00 橙色品牌色
+- **替换 emoji**：
+  - NewsCard：🏸🥇🎯🏆🚀 → IconShuttlecock + IconSparkle
+  - VenueCard：🏟️🏸☀️⚡🏘️ → IconVenue
+  - EquipmentCategoryCard：🏸👟🎒 → IconRacket / IconEquipment（按 category 分发）
+  - PlayerCard：🏸🎯⚡ → IconPlayer + IconFire
+  - AIAssistantButton：🤖 → IconAI
+  - HomePage / CommunityPage：🔄🎙️ → IconRefresh + IconAI
+  - MainTabs：🏠👥👤 → IconShuttlecock / IconVenue / IconPlayer
+  - AppMenuItem / ProfilePage：6 项菜单 → iconType 枚举分发 + IconPlayer 头像
+
+#### 4. App 图标重新设计
+
+- **替换** AppScope/entry 的 `background.png / foreground.png` → `background.svg / foreground.svg`
+- **设计**：
+  - 背景：橙色渐变 (#FFB74D → #FF8C00 → #FF6F00) + 装饰圆 + 动感速度线
+  - 前景：白色羽毛球（7 片羽毛 + 软木底座 + 中心红心）+ 飞行轨迹光弧
+- 保持与 DesignTokens 一致的 #FF8C00 主品牌色
+
+### 静态自检（grep 验证）
+
+- `Text(... + $r(...))` 拼接：0 命中（全部拆分）
+- `getContext() / promptAction.xxx` 直接调用：0 命中
+- `AIInsightEngine` 引用：14 处
+- `IconXXX` 组件引用：10+ 处（替代原 emoji）
+
+### 兼容性
+
+- **API 要求**：HarmonyOS API 22 / 6.0.1(21)
+- **依赖**：无新增 ohpm 包（SVG 是 HarmonyOS 原生支持）
+- **文件数**：13 修改 + 11 新增
+- **公共 API**：内部重构（AppMenuItem 的 `icon: string` → `iconType: MenuIconType`，调用方已同步更新）
+
+### 后续
+
+- v1.1.4 可考虑接入 HarmonyOS Agent Framework Kit / 云函数 LLM，替换本地规则引擎为真实 AI
+- SVG 图标性能可进一步优化（缓存、合并 sprite）
+
+---
+
 ## [v1.1.2.3] - 2026-06-18 — ProfilePage 真机编译 ERROR hotfix
 
 ### 概述

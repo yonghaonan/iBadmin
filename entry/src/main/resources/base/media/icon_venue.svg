@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  IconVenue — 羽毛球馆图标
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="venueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF8C00"/>
+      <stop offset="100%" stop-color="#FF6F00"/>
+    </linearGradient>
+    <linearGradient id="roofGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFB74D"/>
+      <stop offset="100%" stop-color="#FF8C00"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 场馆主体 -->
+  <g>
+    <!-- 屋顶 -->
+    <path d="M 200 350 L 512 200 L 824 350 Z" fill="url(#roofGrad)" stroke="#E65100" stroke-width="8"/>
+
+    <!-- 主体建筑 -->
+    <rect x="220" y="350" width="584" height="450" fill="url(#venueGrad)" stroke="#E65100" stroke-width="8" rx="8"/>
+
+    <!-- 大门（中央拱门）-->
+    <path d="M 412 800 L 412 600 Q 412 540 512 540 Q 612 540 612 600 L 612 800 Z" fill="#FFFFFF" stroke="#E65100" stroke-width="6"/>
+
+    <!-- 左侧窗户 -->
+    <rect x="270" y="450" width="100" height="80" fill="#FFFFFF" stroke="#E65100" stroke-width="4"/>
+    <line x1="320" y1="450" x2="320" y2="530" stroke="#E65100" stroke-width="3"/>
+    <line x1="270" y1="490" x2="370" y2="490" stroke="#E65100" stroke-width="3"/>
+
+    <!-- 右侧窗户 -->
+    <rect x="654" y="450" width="100" height="80" fill="#FFFFFF" stroke="#E65100" stroke-width="4"/>
+    <line x1="704" y1="450" x2="704" y2="530" stroke="#E65100" stroke-width="3"/>
+    <line x1="654" y1="490" x2="754" y2="490" stroke="#E65100" stroke-width="3"/>
+
+    <!-- 灯光（左上）-->
+    <circle cx="280" cy="280" r="30" fill="#FFE082" opacity="0.9"/>
+    <line x1="280" y1="240" x2="280" y2="210" stroke="#FFE082" stroke-width="4" opacity="0.7"/>
+    <line x1="280" y1="320" x2="280" y2="350" stroke="#FFE082" stroke-width="4" opacity="0.7"/>
+    <line x1="240" y1="280" x2="210" y2="280" stroke="#FFE082" stroke-width="4" opacity="0.7"/>
+    <line x1="320" y1="280" x2="350" y2="280" stroke="#FFE082" stroke-width="4" opacity="0.7"/>
+
+    <!-- 灯光（右上）-->
+    <circle cx="744" cy="280" r="30" fill="#FFE082" opacity="0.9"/>
+    <line x1="744" y1="240" x2="744" y2="210" stroke="#FFE082" stroke-width="4" opacity="0.7"/>
+    <line x1="744" y1="320" x2="744" y2="350" stroke="#FFE082" stroke-width="4" opacity="0.7"/>
+    <line x1="704" y1="280" x2="674" y2="280" stroke="#FFE082" stroke-width="4" opacity="0.7"/>
+    <line x1="784" y1="280" x2="814" y2="280" stroke="#FFE082" stroke-width="4" opacity="0.7"/>
+  </g>
+
+  <!-- 地面基座 -->
+  <rect x="180" y="800" width="664" height="50" fill="#E65100" rx="4"/>
+</svg>

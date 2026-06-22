@@ -4,4 +4,10 @@
     "background" : "$media:background",
     "foreground" : "$media:foreground"
   }
+}{
+  "layered-image":
+  {
+    "background" : "$media:background",
+    "foreground" : "$media:foreground"
+  }
 }

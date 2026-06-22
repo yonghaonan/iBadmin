@@ -11,6 +11,7 @@
  */
 
 import { DesignTokens } from '../common/DesignTokens';
+import { IconAI } from '../common/Icons';
 
 @Component
 export struct AIAssistantButton {
@@ -30,8 +31,7 @@ export struct AIAssistantButton {
 
       // 内层按钮
       Column() {
-        Text(this.icon)
-          .fontSize(24)
+        IconAI({ size: DesignTokens.FONT_EMOJI })
       }
       .width(DesignTokens.AI_BUTTON_SIZE)
       .height(DesignTokens.AI_BUTTON_SIZE)

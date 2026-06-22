@@ -19,6 +19,7 @@ import { AppConstants } from '../../common/Constants';
 import { AppLogger } from '../../common/AppLogger';
 import { CommunityViewModel } from '../../viewmodel/CommunityViewModel';
 import { LoadState } from '../../viewmodel/HomeViewModel';
+import { IconRefresh } from '../../common/Icons';
 
 import { VenueItem } from '../../model/VenueModel';
 import { EquipmentItem } from '../../model/EquipmentModel';
@@ -54,8 +55,7 @@ export struct CommunityPage {
           .fontColor($r('app.color.text_primary'))
           .layoutWeight(1)
 
-        Text('🔄')
-          .fontSize(DesignTokens.FONT_EMOJI)
+        IconRefresh({ size: DesignTokens.FONT_EMOJI })
           .onClick((): void => {
             this.vm.refresh();
           })
