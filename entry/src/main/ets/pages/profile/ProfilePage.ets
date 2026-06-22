@@ -19,7 +19,7 @@ import { ProfileViewModel } from '../../viewmodel/ProfileViewModel';
 import { PrivacyDialog, PrivacyController } from '../../components/PrivacyDialog';
 import { AppMenuItem } from '../../components/AppMenuItem';
 import { AppLogger } from '../../common/AppLogger';
-import { ActionMenuSuccessResponse } from '@kit.ArkUI';
+
 import { ConfigurationConstant } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -42,6 +42,10 @@ export struct ProfilePage {
   private applyThemeMode(mode: string): void {
     try {
       const ctx = this.getUIContext().getHostContext();
+      if (!ctx) {
+        AppLogger.warn('ProfilePage', 'HostContext is undefined, skip applyThemeMode');
+        return;
+      }
       let colorMode: ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET;
       if (mode === AppConstants.THEME_DARK) {
         colorMode = ConfigurationConstant.ColorMode.COLOR_MODE_DARK;
@@ -297,7 +301,7 @@ export struct ProfilePage {
         { text: $r('app.string.profile_theme_light'), color: $r('app.color.text_primary') },
         { text: $r('app.string.profile_theme_dark'), color: $r('app.color.text_primary') }
       ]
-    }, (err: BusinessError, data: ActionMenuSuccessResponse): void => {
+    }, (err: BusinessError, data): void => {
       if (err) {
         AppLogger.error('ProfilePage', `Theme picker canceled: ${err.message}`);
         return;
