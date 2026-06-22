@@ -2,6 +2,52 @@
 
 所有 iBadmin 项目的重要变更记录在此文件。
 
+## [v1.1.3.1] - 2026-06-18 — App 图标资源冲突 hotfix
+
+### 概述
+
+v1.1.3 推送后真机测试报告资源冲突错误（hvigor Error 11211117 Resource Pack Error）。v1.1.3 添加 background.svg/foreground.svg 时忘记删除同名 PNG，导致 AppScope 和 entry 两个目录中各自存在 2 个同名资源，HarmonyOS 资源编译器 restool 检测到冲突并报错。
+
+### 修复（Fix）
+
+#### 资源冲突消除（git rm 4 个 PNG）
+
+| 文件 | 操作 |
+|------|------|
+| `AppScope/resources/base/media/background.png` | git rm |
+| `AppScope/resources/base/media/foreground.png` | git rm |
+| `entry/src/main/resources/base/media/background.png` | git rm |
+| `entry/src/main/resources/base/media/foreground.png` | git rm |
+| `entry/src/main/resources/base/media/startIcon.png` | **保留**（DevEco 启动图标） |
+
+### 根因分析
+
+调用路径错误：
+1. `del /f /q` 命令在 Node fallback shell 中被中文乱码截断，导致删除失败
+2. `DeleteFile` 工具调用时已删除**物理文件**，但未执行 `git rm`
+3. `git add` + `git commit` 仅记录新增 SVG，未追踪删除操作
+4. 推送后 GitHub/Gitee 仓库中 PNG 和 SVG 同时存在
+5. HarmonyOS 资源编译器检测同名资源冲突
+
+### 静态验证
+
+```bash
+$ git ls-files AppScope/resources/base/media entry/src/main/resources/base/media | grep -E 'background|foreground'
+AppScope/resources/base/media/background.svg
+AppScope/resources/base/media/foreground.svg
+entry/src/main/resources/base/media/background.svg
+entry/src/main/resources/base/media/foreground.svg
+```
+PNG 已全部清除，仅剩 SVG ✅
+
+### 兼容性
+
+- **API 要求**：HarmonyOS API 22 / 6.0.1(21)
+- **功能变更**：0（仅删除冲突文件）
+- **依赖**：无变更
+
+---
+
 ## [v1.1.3] - 2026-06-18 — UI 完善 + AI 洞察接入 + 图标重设计
 
 ### 概述
