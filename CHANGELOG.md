@@ -2,6 +2,72 @@
 
 所有 iBadmin 项目的重要变更记录在此文件。
 
+## [v1.1.2.2] - 2026-06-18 — 真机测试 ArkTS 编译错误 hotfix
+
+### 概述
+
+v1.1.2 推送至 GitHub/Gitee 后，在 DevEco Studio 真机编译时 hvigor 报告 **3 个 ERROR + 6 个 WARN**。本热修复全部修复，在保持 v1.1.2 视觉设计完全不变的前提下，消除所有 ArkTS 严格模式告警，为后续真机调试验证扫除障碍。
+
+### 修复（Fix）
+
+#### 3 个 ArkTS 编译 ERROR
+
+| # | 文件 | 行 | 错误信息 | 根因 | 修复 |
+|---|------|----|---------|------|------|
+| 1 | `components/AIAssistantButton.ets` | 46 | `Property 'justifyContent' does not exist on type 'StackAttribute'` | Stack 是堆叠布局容器，仅有 `alignContent`（子元素对齐），**不支持 `justifyContent`**（Flex 主轴对齐属性） | 改为 `Stack({ alignContent: Alignment.Center })`，子元素依靠尺寸自适应堆叠居中 |
+| 2 | `components/ProgressRing.ets` | 19 | `Property 'size' in type 'ProgressRing' is not assignable to the same property in base type 'CustomComponent'. Type 'number' is not assignable to type '(value: SizeOptions) => CommonAttribute'` | ArkUI 内置基类 `CustomComponent` 有 `size(value: SizeOptions)` setter，自定义 `@Prop size: number` 与之类型冲突 | 重命名属性 `size` → `ringSize`，同步内部 3 处引用 |
+| 3 | `pages/profile/ProfilePage.ets` | 300 | `Argument of type '(err: BusinessError, index: number) => void' is not assignable to parameter of type 'AsyncCallback<ActionMenuSuccessResponse, void>'` | `showActionMenu` API 第二参数是 `data: ActionMenuSuccessResponse`（含 `index` 字段），不是直接的 `index` | 回调签名改为 `(err, data)`，内部 `data.index` 取值；新增 import `ActionMenuSuccessResponse` |
+
+#### 6 个 deprecated API WARN
+
+| # | 文件 | 行 | 旧写法（deprecated） | 新写法（ArkUI 12+ 推荐） |
+|---|------|----|---------------------|-------------------------|
+| 1 | `pages/home/HomePage.ets` | 68 | `promptAction.showToast(...)` | `this.getUIContext().getPromptAction().showToast(...)` |
+| 2 | `pages/home/HomePage.ets` | 204 | `promptAction.showToast(...)` | `this.getUIContext().getPromptAction().showToast(...)` |
+| 3 | `pages/profile/ProfilePage.ets` | 44 | `getContext()` | `this.getUIContext().getHostContext()` |
+| 4 | `pages/profile/ProfilePage.ets` | 293 | `promptAction.showActionMenu(...)` | `this.getUIContext().getPromptAction().showActionMenu(...)` |
+| 5 | `pages/profile/ProfilePage.ets` | 313 | `promptAction.showToast(...)` | `this.getUIContext().getPromptAction().showToast(...)` |
+| 6 | `pages/profile/ProfilePage.ets` | 328 | `promptAction.showToast(...)` | `this.getUIContext().getPromptAction().showToast(...)` |
+
+### 静态自检结果
+
+```bash
+$ grep -rn 'promptAction\.\|getContext()' entry/src/main/ets
+# 0 命中（全部清除）
+
+$ grep -n 'this\.size\|@Prop public size' entry/src/main/ets/components/ProgressRing.ets
+# 0 命中（ringSize 完全替代）
+
+$ grep -n 'Stack() {' entry/src/main/ets/components/AIAssistantButton.ets
+# 0 命中（改为 Stack({ alignContent })）
+```
+
+### 兼容性
+
+- **API 要求**：项目锁定 HarmonyOS API 22 / 6.0.1(21)，`getUIContext()` / `getPromptAction()` / `getHostContext()` 均属该 API 标准方法
+- **视觉效果**：零变化（仅修改 API 调用入口与回调签名）
+- **公共 API**：0 破坏性变更（仅内部组件属性 `size` → `ringSize`，外部调用点 0 个使用）
+- **依赖**：无新增 ohpm 包，无 manifest 变更
+
+### 提交信息
+
+```
+v1.1.2.2 hotfix: 修复 3 ArkTS ERROR + 6 deprecated API
+
+- AIAssistantButton: Stack { alignContent: Center } (justifyContent 不属于 StackAttribute)
+- ProgressRing: 属性 size → ringSize (避免与基类 CustomComponent.size 冲突)
+- ProfilePage: showActionMenu 回调签名 (err, data: ActionMenuSuccessResponse)
+- 6 处 deprecated API → this.getUIContext().getPromptAction().xxx / getHostContext()
+- 删除 HomePage.ets / ProfilePage.ets 中不再使用的 promptAction import
+```
+
+### 后续
+
+- 真机验证：用户需在 DevEco Studio 中执行 `_build.bat` 确认 HAP 打包成功
+- 如遇 `getPromptAction` / `getHostContext` 在真机 SDK 版本不存在，需检查 SDK 版本是否 ≥ API 12
+
+---
+
 ## [v1.1.2] - 2026-06-18 — 双主题 UI 重构（A2 智能情境 + A3 深色霓虹）
 
 ### 概述

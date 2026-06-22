@@ -16,7 +16,7 @@ import { DesignTokens } from '../common/DesignTokens';
 export struct ProgressRing {
   @Prop public progress: number = 0;
   @Prop public label: string = '%';
-  @Prop public size: number = DesignTokens.PROGRESS_RING_SIZE;
+  @Prop public ringSize: number = DesignTokens.PROGRESS_RING_SIZE;
 
   public build(): void {
     Stack() {
@@ -33,16 +33,16 @@ export struct ProgressRing {
           .fontColor($r('app.color.text_secondary'))
           .margin({ top: -2 })
       }
-      .width(this.size)
-      .height(this.size)
-      .borderRadius(this.size / 2)
+      .width(this.ringSize)
+      .height(this.ringSize)
+      .borderRadius(this.ringSize / 2)
       .borderWidth(4)
       .borderColor($r('app.color.ai_orange'))
       .backgroundColor($r('app.color.ai_glow_color'))
       .justifyContent(FlexAlign.Center)
       .alignItems(HorizontalAlign.Center)
     }
-    .width(this.size)
-    .height(this.size)
+    .width(this.ringSize)
+    .height(this.ringSize)
   }
 }

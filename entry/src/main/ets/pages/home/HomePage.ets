@@ -26,7 +26,7 @@ import { EmptyState, EmptyStateType } from '../../components/EmptyState';
 import { AIInsightCard } from '../../components/AIInsightCard';
 import { AIAssistantButton } from '../../components/AIAssistantButton';
 import { ProgressRing } from '../../components/ProgressRing';
-import { promptAction } from '@kit.ArkUI';
+
 
 @Component
 export struct HomePage {
@@ -65,7 +65,7 @@ export struct HomePage {
           AIAssistantButton({
             onTap: (): void => {
               AppLogger.info('HomePage', 'AI Assistant tapped');
-              promptAction.showToast({ message: 'AI 助理功能即将上线', duration: 1500 });
+              this.getUIContext().getPromptAction().showToast({ message: 'AI 助理功能即将上线', duration: 1500 });
             }
           })
         }
@@ -201,7 +201,7 @@ export struct HomePage {
         .offset({ x: -20, y: -(DesignTokens.TAB_BAR_HEIGHT + 20) })
         .onClick((): void => {
           AppLogger.info('HomePage', 'AI Voice FAB tapped');
-          promptAction.showToast({ message: 'AI 语音功能即将上线', duration: 1500 });
+          this.getUIContext().getPromptAction().showToast({ message: 'AI 语音功能即将上线', duration: 1500 });
         })
       }
     }

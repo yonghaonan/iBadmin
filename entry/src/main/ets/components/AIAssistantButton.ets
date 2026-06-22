@@ -18,7 +18,7 @@ export struct AIAssistantButton {
   @Prop public icon: string = '🤖';
 
   public build(): void {
-    Stack() {
+    Stack({ alignContent: Alignment.Center }) {
       // 外层光晕（深色下显示为霓虹）
       Column()
         .width(DesignTokens.AI_BUTTON_SIZE + 8)
@@ -43,8 +43,6 @@ export struct AIAssistantButton {
     }
     .width(DesignTokens.AI_BUTTON_SIZE + 8)
     .height(DesignTokens.AI_BUTTON_SIZE + 8)
-    .justifyContent(FlexAlign.Center)
-    .alignItems(HorizontalAlign.Center)
     .onClick((): void => {
       this.onTap();
     })

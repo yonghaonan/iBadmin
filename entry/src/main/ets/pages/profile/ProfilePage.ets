@@ -19,7 +19,7 @@ import { ProfileViewModel } from '../../viewmodel/ProfileViewModel';
 import { PrivacyDialog, PrivacyController } from '../../components/PrivacyDialog';
 import { AppMenuItem } from '../../components/AppMenuItem';
 import { AppLogger } from '../../common/AppLogger';
-import { promptAction } from '@kit.ArkUI';
+import { ActionMenuSuccessResponse } from '@kit.ArkUI';
 import { ConfigurationConstant } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -41,7 +41,7 @@ export struct ProfilePage {
 
   private applyThemeMode(mode: string): void {
     try {
-      const ctx = getContext();
+      const ctx = this.getUIContext().getHostContext();
       let colorMode: ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET;
       if (mode === AppConstants.THEME_DARK) {
         colorMode = ConfigurationConstant.ColorMode.COLOR_MODE_DARK;
@@ -290,18 +290,19 @@ export struct ProfilePage {
    */
   private showThemePicker(): void {
     const that = this;
-    promptAction.showActionMenu({
+    this.getUIContext().getPromptAction().showActionMenu({
       title: '选择主题',
       buttons: [
         { text: $r('app.string.profile_theme_auto'), color: $r('app.color.text_primary') },
         { text: $r('app.string.profile_theme_light'), color: $r('app.color.text_primary') },
         { text: $r('app.string.profile_theme_dark'), color: $r('app.color.text_primary') }
       ]
-    }, (err: BusinessError, index: number): void => {
+    }, (err: BusinessError, data: ActionMenuSuccessResponse): void => {
       if (err) {
         AppLogger.error('ProfilePage', `Theme picker canceled: ${err.message}`);
         return;
       }
+      const index: number = data.index;
       let newMode: string = AppConstants.THEME_AUTO;
       if (index === 1) {
         newMode = AppConstants.THEME_LIGHT;
@@ -310,7 +311,7 @@ export struct ProfilePage {
       }
       AppStorage.setOrCreate<string>(AppConstants.APPSTORAGE_THEME_MODE, newMode);
       that.applyThemeMode(newMode);
-      promptAction.showToast({ message: '主题已切换', duration: 1000 });
+      that.getUIContext().getPromptAction().showToast({ message: '主题已切换', duration: 1000 });
     });
   }
 
@@ -325,7 +326,7 @@ export struct ProfilePage {
       },
       (): void => {
         AppLogger.info('ProfilePage', 'Privacy rejected');
-        promptAction.showToast({ message: $r('app.string.privacy_reject_toast'), duration: 2000 });
+        this.getUIContext().getPromptAction().showToast({ message: $r('app.string.privacy_reject_toast'), duration: 2000 });
       }
     );
   }
