@@ -2,6 +2,64 @@
 
 所有 iBadmin 项目的重要变更记录在此文件。
 
+## [v1.1.2.3] - 2026-06-18 — ProfilePage 真机编译 ERROR hotfix
+
+### 概述
+
+v1.1.2.2 推送后二次真机测试发现 v1.1.2 hotfix 遗漏的 2 类错误（4 个 ERROR 实例）。本热修复针对性解决，1 文件 6+ 行。
+
+### 修复（Fix）
+
+#### ERROR 1 — `'ctx' is possibly 'undefined'` (10605999)
+
+| 项 | 内容 |
+|----|------|
+| 位置 | `pages/profile/ProfilePage.ets:51` |
+| 错误信息 | `'ctx' is possibly 'undefined'` |
+| 根因 | `this.getUIContext().getHostContext()` 返回类型为 `common.Context \| undefined`（ArkTS 严格模式不允许未定义值直接调用方法） |
+| 修复 | 添加 `if (!ctx) { AppLogger.warn(...); return; }` 守卫 |
+
+#### ERROR 2 & 3 — `ActionMenuSuccessResponse` 未从 `@kit.ArkUI` 导出 (10505001 / 10311006)
+
+| 项 | 内容 |
+|----|------|
+| 位置 | `pages/profile/ProfilePage.ets:22` |
+| 错误信息 | `Module '"@kit.ArkUI"' has no exported member 'ActionMenuSuccessResponse'` |
+| 根因 | v1.1.2.2 误判：`ActionMenuSuccessResponse` 是 `promptAction` 命名空间下的内部类型，不通过顶层 `export` 暴露 |
+| 修复 | 1. 删除 `import { ActionMenuSuccessResponse } from '@kit.ArkUI';` <br>2. 回调签名改为 `(err, data)` 让 ArkTS 自动推断 <br>3. 同步清理不再使用的 `import { promptAction }` |
+
+### 全项目规范静态检查（grep 验证）
+
+| 检查项 | 命令 | 结果 |
+|--------|------|------|
+| promptAction 全局调用 | `grep -rn 'promptAction\.' entry/src/main/ets` | ✅ 0 命中 |
+| getContext() 调用 | `grep -rn 'getContext()' entry/src/main/ets` | ✅ 0 命中 |
+| ActionMenuSuccessResponse import | `grep -rn "import.*ActionMenuSuccessResponse" entry/src/main/ets` | ✅ 0 命中 |
+| Stack + justifyContent 误用 | `grep -rn 'Stack()' entry/src/main/ets` + `.justifyContent` | ✅ 0 命中 |
+| @Prop 属性与 ArkUI 基类同名 | `grep -rn '@Prop public (size\|width\|height\|...)' entry/src/main/ets` | ✅ 0 命中 |
+| console / eval / obj[key] | `grep -rn 'console\.\|eval(\|obj\[key\]' entry/src/main/ets` | ✅ 0 命中 |
+
+### 兼容性
+
+- **API 要求**：HarmonyOS API 22 / 6.0.1(21)，`getUIContext()` / `getPromptAction()` / `getHostContext()` 均属该 API 标准方法
+- **公共 API**：0 破坏性变更
+- **依赖**：无新增 ohpm 包
+- **文件数**：仅 1 文件修改（`ProfilePage.ets`，+6 -2 行）
+
+### 提交信息
+
+```
+v1.1.2.3 hotfix: 修复 ProfilePage 2 个真机编译 ERROR
+
+ERROR 1 - ctx possibly undefined:
+  getHostContext() 返回 Context | undefined，需加 if (!ctx) return
+
+ERROR 2 - ActionMenuSuccessResponse 未从 @kit.ArkUI 导出:
+  应让回调参数类型自动推断，删除错误的 import 语句
+```
+
+---
+
 ## [v1.1.2.2] - 2026-06-18 — 真机测试 ArkTS 编译错误 hotfix
 
 ### 概述
