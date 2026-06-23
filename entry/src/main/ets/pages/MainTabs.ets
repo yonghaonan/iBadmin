@@ -26,14 +26,14 @@ type TabIconType = 'home' | 'community' | 'profile';
 
 interface TabItem {
   readonly index: number;
-  readonly label: string;
+  readonly label: ResourceStr;
   readonly iconType: TabIconType;
 }
 
 const TAB_ITEMS: readonly TabItem[] = [
-  { index: 0, label: '首页', iconType: 'home' },
-  { index: 1, label: '社区', iconType: 'community' },
-  { index: 2, label: '我的', iconType: 'profile' }
+  { index: 0, label: $r('app.string.tab_home'), iconType: 'home' },
+  { index: 1, label: $r('app.string.tab_community'), iconType: 'community' },
+  { index: 2, label: $r('app.string.tab_profile'), iconType: 'profile' }
 ];
 
 @Component

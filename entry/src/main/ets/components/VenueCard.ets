@@ -107,14 +107,14 @@ export struct VenueCard {
     })
   }
 
-  private statusText(): string {
+  private statusText(): ResourceStr {
     if (this.item.status === VenueStatus.AVAILABLE) {
-      return '空闲';
+      return $r('app.string.venues_status_available');
     }
     if (this.item.status === VenueStatus.BUSY) {
-      return '繁忙';
+      return $r('app.string.venues_status_busy');
     }
-    return '已满';
+    return $r('app.string.venues_status_full');
   }
 
   private statusColor(): ResourceColor {

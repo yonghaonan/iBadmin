@@ -140,7 +140,7 @@ export struct PrivacyDialog {
       .width('100%')
       .height('100%')
       .justifyContent(FlexAlign.Center)
-      .backgroundColor(this.visible ? '#80000000' : '#00000000')
+      .backgroundColor(this.visible ? $r('app.color.overlay_mask') : $r('app.color.transparent'))
       .hitTestBehavior(HitTestMode.Transparent)
     }
     .width('100%')

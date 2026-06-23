@@ -57,7 +57,7 @@ export class CommunityViewModel {
 
   public async loadVenues(): Promise<void> {
     try {
-      const data: VenueItem[] = await VenueClient.getNearby(20);
+      const data: VenueItem[] = await VenueClient.getNearby(AppConstants.DEFAULT_PAGE_SIZE);
       this.venueList = data;
       this.venueState = data.length === 0 ? LoadState.EMPTY : LoadState.LOADED;
     } catch (e) {
@@ -81,7 +81,7 @@ export class CommunityViewModel {
 
   public async loadPlayers(): Promise<void> {
     try {
-      const data: PlayerItem[] = await PlayerClient.getList(20);
+      const data: PlayerItem[] = await PlayerClient.getList(AppConstants.DEFAULT_PAGE_SIZE);
       this.playerList = data;
       this.playerState = data.length === 0 ? LoadState.EMPTY : LoadState.LOADED;
     } catch (e) {

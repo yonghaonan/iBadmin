@@ -24,9 +24,9 @@ export struct AIInsightCard {
       Row() {
         // 状态点（绿色 = AI 在线）
         Row()
-          .width(10)
-          .height(10)
-          .borderRadius(5)
+          .width(DesignTokens.STATUS_DOT_SIZE)
+          .height(DesignTokens.STATUS_DOT_SIZE)
+          .borderRadius(DesignTokens.STATUS_DOT_SIZE / 2)
           .backgroundColor($r('app.color.ai_status_dot'))
           .margin({ right: DesignTokens.SPACING_XS })
 

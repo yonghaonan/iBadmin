@@ -125,7 +125,7 @@ export struct ProfilePage {
         .fontSize(DesignTokens.FONT_BODY)
         .fontColor($r('app.color.text_on_primary'))
         .backgroundColor($r('app.color.huawei_red'))
-        .height(DesignTokens.INPUT_HEIGHT + 8)
+        .height(DesignTokens.LOGIN_BUTTON_HEIGHT)
         .width('80%')
         .borderRadius(DesignTokens.RADIUS_LG)
         .margin({ bottom: DesignTokens.SPACING_MD })
@@ -268,14 +268,14 @@ export struct ProfilePage {
   /**
    * 主题标签（副标题）
    */
-  private themeLabel(): string {
+  private themeLabel(): ResourceStr {
     if (this.themeMode === AppConstants.THEME_DARK) {
-      return '深色霓虹';
+      return $r('app.string.profile_theme_dark');
     }
     if (this.themeMode === AppConstants.THEME_LIGHT) {
-      return '浅色模式';
+      return $r('app.string.profile_theme_light');
     }
-    return '跟随系统';
+    return $r('app.string.profile_theme_auto');
   }
 
   /**
@@ -284,7 +284,7 @@ export struct ProfilePage {
   private showThemePicker(): void {
     const that = this;
     this.getUIContext().getPromptAction().showActionMenu({
-      title: '选择主题',
+      title: $r('app.string.profile_theme_picker_title'),
       buttons: [
         { text: $r('app.string.profile_theme_auto'), color: $r('app.color.text_primary') },
         { text: $r('app.string.profile_theme_light'), color: $r('app.color.text_primary') },
@@ -304,7 +304,7 @@ export struct ProfilePage {
       }
       AppStorage.setOrCreate<string>(AppConstants.APPSTORAGE_THEME_MODE, newMode);
       that.applyThemeMode(newMode);
-      that.getUIContext().getPromptAction().showToast({ message: '主题已切换', duration: 1000 });
+      that.getUIContext().getPromptAction().showToast({ message: $r('app.string.theme_switch_success'), duration: 1000 });
     });
   }
 

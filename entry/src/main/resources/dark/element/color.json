@@ -40,6 +40,8 @@
     { "name": "shadow_soft", "value": "#4C000000" },
     { "name": "shadow_ai_button", "value": "#99FF8C00" },
     { "name": "tab_pill_active", "value": "#FF8C00" },
-    { "name": "tab_inactive", "value": "#6B7280" }
+    { "name": "tab_inactive", "value": "#6B7280" },
+    { "name": "overlay_mask", "value": "#99000000" },
+    { "name": "transparent", "value": "#00000000" }
   ]
 }

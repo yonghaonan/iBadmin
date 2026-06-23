@@ -1,4 +1,4 @@
-/**
+﻿/**
  * HomeViewModel — 首页资讯 ViewModel
  *
  * 职责：
@@ -44,7 +44,7 @@ export class HomeViewModel {
     this.errorMessage = '';
 
     try {
-      const data: NewsItem[] = await NewsClient.getList(20);
+      const data: NewsItem[] = await NewsClient.getList(AppConstants.DEFAULT_PAGE_SIZE);
       this.newsList = data;
       this.state = data.length === 0 ? LoadState.EMPTY : LoadState.LOADED;
       AppLogger.info('HomeViewModel', `Loaded ${data.length} news items`);
@@ -74,7 +74,7 @@ export class HomeViewModel {
       this.aiInsight = AIInsightEngine.generate({ user, weather, venue });
       AppLogger.info('HomeViewModel', `AI insight generated: ${this.aiInsight.insightContent}`);
     } catch (e) {
-      AppLogger.error('HomeViewModel', `AI insight failed: ${JSON.stringify(e)}`);
+      AppLogger.error('HomeViewModel', `AI insight failed: ${ErrorFormatter.format('HomeViewModel.loadAIInsight', e)}`);
       // 失败时使用 null，UI 层显示静态 fallback
       this.aiInsight = null;
     }

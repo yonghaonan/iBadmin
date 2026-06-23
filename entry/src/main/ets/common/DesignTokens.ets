@@ -159,4 +159,13 @@ export class DesignTokens {
 
   // ========== 默认头像 emoji ==========
   static readonly DEFAULT_AVATAR_EMOJI: string = '🏸'
+
+  // ========== v1.1.4 补全（硬编码清零）==========
+  static readonly COMMUNITY_TAB_BAR_HEIGHT: number = 48
+  static readonly STATUS_DOT_SIZE: number = 10
+  static readonly ICON_TAG_SIZE: number = 14
+  static readonly OFFSET_TAG_X: number = -12
+  static readonly OFFSET_TAG_Y: number = 12
+  static readonly FAB_OFFSET: number = 20
+  static readonly LOGIN_BUTTON_HEIGHT: number = 48
 }

@@ -73,19 +73,19 @@ export struct CommunityPage {
         TabContent() {
           this.VenueListView()
         }
-        .tabBar(this.tabBarBuilder($r('app.string.community_tab_venues')))
+        .tabBar(this.tabBarBuilder(AppConstants.COMMUNITY_TAB_VENUE, $r('app.string.community_tab_venues')))
 
         TabContent() {
           this.EquipmentGridView()
         }
-        .tabBar(this.tabBarBuilder($r('app.string.community_tab_equipment')))
+        .tabBar(this.tabBarBuilder(AppConstants.COMMUNITY_TAB_EQUIPMENT, $r('app.string.community_tab_equipment')))
 
         TabContent() {
           this.PlayerListView()
         }
-        .tabBar(this.tabBarBuilder($r('app.string.community_tab_players')))
+        .tabBar(this.tabBarBuilder(AppConstants.COMMUNITY_TAB_PLAYER, $r('app.string.community_tab_players')))
       }
-      .barHeight(48)
+      .barHeight(DesignTokens.COMMUNITY_TAB_BAR_HEIGHT)
       .barBackgroundColor($r('app.color.card_background'))
       .layoutWeight(1)
       .onChange((index: number): void => {
@@ -98,24 +98,14 @@ export struct CommunityPage {
   }
 
   @Builder
-  private tabBarBuilder(label: string | Resource): void {
+  private tabBarBuilder(tabIndex: number, label: ResourceStr): void {
     Text(label)
       .fontSize(DesignTokens.FONT_BODY)
-      .fontColor(this.vm.activeTabIndex === this.tabIndexOf(label) ? $r('app.color.ai_orange') : $r('app.color.text_secondary'))
-      .fontWeight(this.vm.activeTabIndex === this.tabIndexOf(label) ? DesignTokens.WEIGHT_HEAVY : DesignTokens.WEIGHT_REGULAR)
+      .fontColor(this.vm.activeTabIndex === tabIndex ? $r('app.color.ai_orange') : $r('app.color.text_secondary'))
+      .fontWeight(this.vm.activeTabIndex === tabIndex ? DesignTokens.WEIGHT_HEAVY : DesignTokens.WEIGHT_REGULAR)
       .height('100%')
       .width('100%')
       .textAlign(TextAlign.Center)
-  }
-
-  private tabIndexOf(label: string | Resource): number {
-    if (label === $r('app.string.community_tab_venues') || label === '附近场馆') {
-      return AppConstants.COMMUNITY_TAB_VENUE;
-    }
-    if (label === $r('app.string.community_tab_equipment') || label === '装备查询') {
-      return AppConstants.COMMUNITY_TAB_EQUIPMENT;
-    }
-    return AppConstants.COMMUNITY_TAB_PLAYER;
   }
 
   @Builder

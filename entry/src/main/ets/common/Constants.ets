@@ -79,6 +79,9 @@ export class AppConstants {
   static readonly MOCK_ID_PREFIX_PLAYER: string = 'player_'
   static readonly MOCK_ID_PREFIX_USER: string = 'user_'
 
+  // ========== 分页默认值 ==========
+  static readonly DEFAULT_PAGE_SIZE: number = 20
+
   // ========== 业务固定 emoji ==========
   static readonly DEFAULT_AVATAR_EMOJI: string = '🏸'
 }

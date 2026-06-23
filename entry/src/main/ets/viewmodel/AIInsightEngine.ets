@@ -1,4 +1,4 @@
-/**
+﻿/**
  * AIInsightEngine — AI 洞察规则引擎（v1.1.3 新增）
  *
  * 职责：
@@ -17,7 +17,6 @@ import {
   AIInsightInput,
   AIInsightResult,
   PlayStyle,
-  WeatherCondition,
   WeatherInfo,
   UserActivity,
   VenueAvailability
@@ -30,6 +29,10 @@ const INACTIVE_THRESHOLD_DAYS: number = 3;
 const WIN_RATE_DIFF_THRESHOLD: number = 0.1;
 
 export class AIInsightEngine {
+
+  // TODO(i18n): computeInsight/computeSuggestion/computeProgress/findBestTimeSlot/formatStyle
+  // 中的硬编码中文需迁移到 string 资源。需要先重构为返回结构化数据（enum + params），
+  // 由 UI 层组合 $r() 资源。当前为 v1 Mock 模式，暂不影响功能。
 
   /**
    * 生成 AI 洞察文案（主入口）
@@ -188,24 +191,6 @@ export class AIInsightEngine {
         return '快速拉吊';
       default:
         return '均衡打法';
-    }
-  }
-
-  /**
-   * 格式化天气状况（备用：使用 conditionText 已含中文，无需额外转换）
-   */
-  private static formatWeather(condition: WeatherCondition): string {
-    switch (condition) {
-      case 'sunny':
-        return '晴';
-      case 'cloudy':
-        return '阴';
-      case 'rainy':
-        return '雨';
-      case 'snowy':
-        return '雪';
-      default:
-        return '';
     }
   }
 }

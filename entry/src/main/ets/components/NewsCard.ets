@@ -26,7 +26,7 @@ export struct NewsCard {
       // AI 摘要标签（右上角）
       if (this.showAiTag) {
         Row() {
-          IconSparkle({ iconSize: 14 })
+          IconSparkle({ iconSize: DesignTokens.ICON_TAG_SIZE })
           Text($r('app.string.ai_summary_tag'))
             .fontSize(DesignTokens.FONT_TINY)
             .fontWeight(DesignTokens.WEIGHT_HEAVY)
@@ -43,7 +43,7 @@ export struct NewsCard {
         .borderRadius(DesignTokens.RADIUS_XS)
         .position({ x: '100%', y: 0 })
         .markAnchor({ x: '100%', y: 0 })
-        .offset({ x: -12, y: 12 })
+        .offset({ x: DesignTokens.OFFSET_TAG_X, y: DesignTokens.OFFSET_TAG_Y })
       }
 
       Row() {

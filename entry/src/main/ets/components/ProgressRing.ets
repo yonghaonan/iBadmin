@@ -24,14 +24,14 @@ export struct ProgressRing {
       // 注：ArkTS SVG API 复杂，此处用渐变环简化
       Column() {
         Text(`${this.progress}`)
-          .fontSize(20)
+          .fontSize(DesignTokens.FONT_H2)
           .fontWeight(DesignTokens.WEIGHT_EXTRA_BOLD)
           .fontColor($r('app.color.ai_orange'))
 
         Text(this.label)
           .fontSize(DesignTokens.FONT_TINY)
           .fontColor($r('app.color.text_secondary'))
-          .margin({ top: -2 })
+          .margin({ top: 0 })
       }
       .width(this.ringSize)
       .height(this.ringSize)

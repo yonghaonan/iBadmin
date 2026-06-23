@@ -1,6 +1,6 @@
 // ohosTest/ets/test/common/AppStorageBootstrap.test.ets
-// AppStorageBootstrap 单元测试 — 5 cases
-// 验证 7 个 AppStorage 共享 key 的默认值初始化
+// AppStorageBootstrap 单元测试 — 7 cases
+// 验证 8 个 AppStorage 共享 key 的默认值初始化（含 v1.1.2 themeMode）
 import { describe, it, expect, beforeAll } from '@ohos/hypium'
 import { AppStorageBootstrap } from '../../../../main/ets/common/AppStorageBootstrap'
 import { AppConstants } from '../../../../main/ets/common/Constants'
@@ -15,6 +15,7 @@ export default function AppStorageBootstrapTest() {
     AppStorage.delete(AppConstants.APPSTORAGE_PRIVACY_AGREED);
     AppStorage.delete(AppConstants.APPSTORAGE_NEWS_REFRESH_COUNT);
     AppStorage.delete(AppConstants.APPSTORAGE_COMMUNITY_REFRESH_COUNT);
+    AppStorage.delete(AppConstants.APPSTORAGE_THEME_MODE);
     // 显式调用
     AppStorageBootstrap.initDefaults();
   });
@@ -42,6 +43,12 @@ export default function AppStorageBootstrapTest() {
     });
     it('refresh_002_community_count_zero', 1, () => {
       expect(AppStorage.get<number>(AppConstants.APPSTORAGE_COMMUNITY_REFRESH_COUNT)).assertEqual(0);
+    });
+  });
+
+  describe('AppStorageBootstrap_themeMode', () => {
+    it('theme_001_default_auto', 0, () => {
+      expect(AppStorage.get<string>(AppConstants.APPSTORAGE_THEME_MODE)).assertEqual(AppConstants.THEME_AUTO);
     });
   });
 

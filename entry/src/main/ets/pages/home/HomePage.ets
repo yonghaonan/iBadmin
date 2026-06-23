@@ -1,4 +1,4 @@
-/**
+﻿/**
  * HomePage — 首页（v1.1.2 重构 — A2 智能情境 + A3 深色霓虹）
  *
  * 设计变化：
@@ -72,7 +72,7 @@ export struct HomePage {
           AIAssistantButton({
             onTap: (): void => {
               AppLogger.info('HomePage', 'AI Assistant tapped');
-              this.getUIContext().getPromptAction().showToast({ message: 'AI 助理功能即将上线', duration: 1500 });
+              this.getUIContext().getPromptAction().showToast({ message: $r('app.string.toast_ai_assistant_coming_soon'), duration: 1500 });
             }
           })
         }
@@ -216,10 +216,10 @@ export struct HomePage {
         .shadow(ShadowStyle.OUTER_DEFAULT_LG)
         .position({ x: '100%', y: '100%' })
         .markAnchor({ x: '100%', y: '100%' })
-        .offset({ x: -20, y: -(DesignTokens.TAB_BAR_HEIGHT + 20) })
+        .offset({ x: -DesignTokens.FAB_OFFSET, y: -(DesignTokens.TAB_BAR_HEIGHT + DesignTokens.FAB_OFFSET) })
         .onClick((): void => {
           AppLogger.info('HomePage', 'AI Voice FAB tapped');
-          this.getUIContext().getPromptAction().showToast({ message: 'AI 语音功能即将上线', duration: 1500 });
+          this.getUIContext().getPromptAction().showToast({ message: $r('app.string.toast_ai_voice_coming_soon'), duration: 1500 });
         })
       }
     }
