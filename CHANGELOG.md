@@ -2,6 +2,80 @@
 
 所有 iBadmin 项目的重要变更记录在此文件。
 
+## [v1.1.3.2] - 2026-06-18 — 全项目 ArkTS 严格模式编译错误 hotfix
+
+### 概述
+
+v1.1.3.1 推送后真机测试 DevEco Studio 报告 18 个 ArkTS ERROR，全为编译错误（阻断打包 HAP）。本 hotfix 一次性修复，按根因分 6 类。
+
+### 修复（Fix）
+
+#### 1. Icons.ets 重命名 size → iconSize（ERROR 3-11，共 9 处）
+
+**根因**：与 v1.1.2.2 修复的 ProgressRing.ringSize 同根因 — ArkUI 基类 CustomComponent 有 size(SizeOptions) setter，自定义 @Prop public size: number 与之类型冲突。
+
+**修复**：9 个 Icon 组件的 @Prop public size 重命名为 @Prop public iconSize，同步所有调用方（10 个文件）。
+
+#### 2. 解构赋值不支持（ERROR 1）
+
+**根因**：ArkTS 严格模式禁止 const [a, b] = ... 解构赋值。
+
+**位置**：HomeViewModel.ets:65
+
+**修复**：使用临时变量 + 索引赋值替代。
+
+#### 3. Stack/Row 误用 justifyContent（ERROR 12, 16）
+
+**根因**：Stack 是堆叠布局，没有 justifyContent（Flex 主轴对齐）；Row 内单子元素用 .justifyContent() 无意义。
+
+**位置**：NewsCard.ets:55、MainTabs.ets:103
+
+**修复**：
+- NewsCard.ets：删除多余的 .justifyContent() / .alignItems()（Row 内单 Image 子元素无需对齐）
+- MainTabs.ets：删除 .justifyContent() / .alignItems()（Stack 使用 alignContent 构造参数替代）
+
+#### 4. HorizontalAlign/VerticalAlign 混用（ERROR 13, 15）
+
+**根因**：Row 内的 alignItems 参数类型是 VerticalAlign（垂直对齐），错传为 HorizontalAlign。
+
+**位置**：VenueCard.ets:31、ProfilePage.ets:154
+
+**修复**：HorizontalAlign.Center → VerticalAlign.Center
+
+#### 5. @Builder 返回 void 错误（ERROR 14）
+
+**根因**：@Builder 装饰的方法返回类型隐式为 void，导致链式 .margin() 报错 Property 'margin' does not exist on type 'void'。
+
+**位置**：EquipmentCategoryCard.ets:38
+
+**修复**：
+- 删除 @Builder 装饰（改为普通方法）
+- margin 从链式调用移到下一个 Text 上
+
+#### 6. 括号不匹配 / 综合 UI 语法错误（ERROR 2, 17）
+
+**根因**：ERROR 12/17 是 Row 内链式调用错位（Image 子组件不需要 .justifyContent）。
+
+**修复**：与 ERROR 12 同步修复。
+
+### 静态自检（grep 验证）
+
+| 检查项 | 结果 |
+|--------|------|
+| const [a, b] = ... 解构赋值 | 0 命中 |
+| @Prop public size: number | 0 命中（9 处全替换为 iconSize） |
+| Stack().*.justifyContent 误用 | 0 命中 |
+| Row().*.alignItems(HorizontalAlign 混用 | 0 命中 |
+| @Builder.*\(.*\).*: void | 0 命中 |
+
+### 兼容性
+
+- **API 要求**：HarmonyOS API 22 / 6.0.1(21)
+- **文件数**：12 文件修改
+- **公共 API**：仅内部重构（Icon.size → Icon.iconSize），调用方已同步更新
+
+---
+
 ## [v1.1.3.1] - 2026-06-18 — App 图标资源冲突 hotfix
 
 ### 概述

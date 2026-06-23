@@ -21,7 +21,7 @@ export struct PlayerCard {
   public build(): void {
     Column() {
       // 头像（SVG 图标）
-      IconPlayer({ size: DesignTokens.FONT_EMOJI_XL })
+      IconPlayer({ iconSize: DesignTokens.FONT_EMOJI_XL })
         .margin({ bottom: DesignTokens.SPACING_SM })
 
       // 姓名
@@ -40,7 +40,7 @@ export struct PlayerCard {
           .fontColor($r('app.color.text_hint'))
 
         Row() {
-          IconFire({ size: DesignTokens.FONT_TINY })
+          IconFire({ iconSize: DesignTokens.FONT_TINY })
           Text(` #${this.item.ranking ?? 0}`)
             .fontSize(DesignTokens.FONT_CAPTION)
             .fontColor($r('app.color.warning'))

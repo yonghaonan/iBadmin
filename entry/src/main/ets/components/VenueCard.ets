@@ -23,12 +23,12 @@ export struct VenueCard {
       Row() {
         // 左侧 SVG 图标封面
         Row() {
-          IconVenue({ size: DesignTokens.ICON_BOX_SIZE })
+          IconVenue({ iconSize: DesignTokens.ICON_BOX_SIZE })
         }
         .width(DesignTokens.ICON_BOX_SIZE)
         .height(DesignTokens.ICON_BOX_SIZE)
         .justifyContent(FlexAlign.Center)
-        .alignItems(HorizontalAlign.Center)
+        .alignItems(VerticalAlign.Center)
 
         // 中间信息
         Column() {

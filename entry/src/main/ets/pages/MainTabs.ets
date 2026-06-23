@@ -72,11 +72,11 @@ export struct MainTabs {
   @Builder
   private renderTabIcon(iconType: TabIconType, isActive: boolean): void {
     if (iconType === 'home') {
-      IconShuttlecock({ size: DesignTokens.ICON_SIZE })
+      IconShuttlecock({ iconSize: DesignTokens.ICON_SIZE })
     } else if (iconType === 'community') {
-      IconVenue({ size: DesignTokens.ICON_SIZE })
+      IconVenue({ iconSize: DesignTokens.ICON_SIZE })
     } else {
-      IconPlayer({ size: DesignTokens.ICON_SIZE })
+      IconPlayer({ iconSize: DesignTokens.ICON_SIZE })
     }
   }
 
@@ -84,7 +84,7 @@ export struct MainTabs {
   private tabBarBuilder(item: TabItem): void {
     Column() {
       // 药丸 + SVG 图标（选中态：橙色背景）
-      Stack() {
+      Stack({ alignContent: Alignment.Center }) {
         // 选中态的橙色药丸
         if (this.activeIndex === item.index) {
           Column()
@@ -100,8 +100,6 @@ export struct MainTabs {
       }
       .width(DesignTokens.TAB_PILL_WIDTH)
       .height(DesignTokens.TAB_PILL_HEIGHT)
-      .justifyContent(FlexAlign.Center)
-      .alignItems(HorizontalAlign.Center)
 
       // 标签
       Text(item.label)

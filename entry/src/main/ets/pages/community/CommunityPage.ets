@@ -55,7 +55,7 @@ export struct CommunityPage {
           .fontColor($r('app.color.text_primary'))
           .layoutWeight(1)
 
-        IconRefresh({ size: DesignTokens.FONT_EMOJI })
+        IconRefresh({ iconSize: DesignTokens.FONT_EMOJI })
           .onClick((): void => {
             this.vm.refresh();
           })

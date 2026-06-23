@@ -26,7 +26,7 @@ export struct NewsCard {
       // AI 摘要标签（右上角）
       if (this.showAiTag) {
         Row() {
-          IconSparkle({ size: 14 })
+          IconSparkle({ iconSize: 14 })
           Text($r('app.string.ai_summary_tag'))
             .fontSize(DesignTokens.FONT_TINY)
             .fontWeight(DesignTokens.WEIGHT_HEAVY)
@@ -47,13 +47,10 @@ export struct NewsCard {
       }
 
       Row() {
-        Row() {
         // 左侧 SVG 图标封面
-        IconShuttlecock({ size: DesignTokens.ICON_BOX_SIZE })
+        IconShuttlecock({ iconSize: DesignTokens.ICON_BOX_SIZE })
           .width(DesignTokens.ICON_BOX_SIZE)
           .height(DesignTokens.ICON_BOX_SIZE)
-          .justifyContent(FlexAlign.Center)
-          .alignItems(HorizontalAlign.Center)
 
         // 右侧内容
         Column() {

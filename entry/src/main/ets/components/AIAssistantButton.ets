@@ -31,7 +31,7 @@ export struct AIAssistantButton {
 
       // 内层按钮
       Column() {
-        IconAI({ size: DesignTokens.FONT_EMOJI })
+        IconAI({ iconSize: DesignTokens.FONT_EMOJI })
       }
       .width(DesignTokens.AI_BUTTON_SIZE)
       .height(DesignTokens.AI_BUTTON_SIZE)

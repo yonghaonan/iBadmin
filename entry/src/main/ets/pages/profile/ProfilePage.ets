@@ -106,7 +106,7 @@ export struct ProfilePage {
       Blank().layoutWeight(1)
 
       // 欢迎图标
-      IconPlayer({ size: DesignTokens.FONT_EMOJI_HERO })
+      IconPlayer({ iconSize: DesignTokens.FONT_EMOJI_HERO })
         .margin({ bottom: DesignTokens.SPACING_LG })
 
       Text($r('app.string.profile_login_title'))
@@ -146,12 +146,12 @@ export struct ProfilePage {
       // 用户卡片
       Row() {
         Row() {
-          IconPlayer({ size: DesignTokens.FONT_EMOJI_XL })
+          IconPlayer({ iconSize: DesignTokens.FONT_EMOJI_XL })
         }
         .width(DesignTokens.AVATAR_SIZE)
         .height(DesignTokens.AVATAR_SIZE)
         .justifyContent(FlexAlign.Center)
-        .alignItems(HorizontalAlign.Center)
+        .alignItems(VerticalAlign.Center)
         .backgroundColor($r('app.color.primary_bg'))
         .borderRadius(DesignTokens.RADIUS_CAPSULE)
 

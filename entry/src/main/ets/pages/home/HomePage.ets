@@ -161,7 +161,7 @@ export struct HomePage {
                 }
                 .layoutWeight(1)
 
-                IconRefresh({ size: DesignTokens.FONT_EMOJI })
+                IconRefresh({ iconSize: DesignTokens.FONT_EMOJI })
                   .onClick((): void => {
                     this.vm.refresh();
                   })
@@ -205,7 +205,7 @@ export struct HomePage {
       // AI 语音输入浮动按钮（右下角）
       if (this.vm.state === LoadState.LOADED) {
         Column() {
-          IconAI({ size: DesignTokens.FONT_EMOJI_LG })
+          IconAI({ iconSize: DesignTokens.FONT_EMOJI_LG })
         }
         .width(DesignTokens.AI_FAB_SIZE)
         .height(DesignTokens.AI_FAB_SIZE)

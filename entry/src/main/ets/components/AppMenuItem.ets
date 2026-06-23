@@ -25,17 +25,17 @@ export struct AppMenuItem {
   @Builder
   private renderMenuIcon(): void {
     if (this.iconType === 'venue') {
-      IconVenue({ size: DesignTokens.ICON_ROW_SIZE })
+      IconVenue({ iconSize: DesignTokens.ICON_ROW_SIZE })
     } else if (this.iconType === 'equipment') {
-      IconEquipment({ size: DesignTokens.ICON_ROW_SIZE })
+      IconEquipment({ iconSize: DesignTokens.ICON_ROW_SIZE })
     } else if (this.iconType === 'history') {
-      IconFire({ size: DesignTokens.ICON_ROW_SIZE })
+      IconFire({ iconSize: DesignTokens.ICON_ROW_SIZE })
     } else if (this.iconType === 'theme') {
-      IconAI({ size: DesignTokens.ICON_ROW_SIZE })
+      IconAI({ iconSize: DesignTokens.ICON_ROW_SIZE })
     } else if (this.iconType === 'settings') {
-      IconShuttlecock({ size: DesignTokens.ICON_ROW_SIZE })
+      IconShuttlecock({ iconSize: DesignTokens.ICON_ROW_SIZE })
     } else {
-      IconPlayer({ size: DesignTokens.ICON_ROW_SIZE })
+      IconPlayer({ iconSize: DesignTokens.ICON_ROW_SIZE })
     }
   }
 

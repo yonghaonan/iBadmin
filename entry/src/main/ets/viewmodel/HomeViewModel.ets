@@ -19,7 +19,7 @@ import { AppLogger } from '../common/AppLogger';
 import { ErrorFormatter } from '../common/ErrorFormatter';
 import { MockDataService } from '../cloud/MockDataService';
 import { AIInsightEngine } from './AIInsightEngine';
-import { AIInsightResult } from '../model/SportsDataModel';
+import { AIInsightResult, UserActivity, WeatherInfo, VenueAvailability } from '../model/SportsDataModel';
 
 export enum LoadState {
   IDLE = 'idle',
@@ -62,11 +62,15 @@ export class HomeViewModel {
    */
   public async loadAIInsight(): Promise<void> {
     try {
-      const [user, weather, venue] = await Promise.all([
+      // v1.1.3.2 修复: ArkTS 不支持解构赋值，使用临时变量
+      const result: Array<UserActivity | WeatherInfo | VenueAvailability> = await Promise.all([
         MockDataService.getUserActivity(),
         MockDataService.getWeather(),
         MockDataService.getVenueAvailability()
       ]);
+      const user: UserActivity = result[0] as UserActivity;
+      const weather: WeatherInfo = result[1] as WeatherInfo;
+      const venue: VenueAvailability = result[2] as VenueAvailability;
       this.aiInsight = AIInsightEngine.generate({ user, weather, venue });
       AppLogger.info('HomeViewModel', `AI insight generated: ${this.aiInsight.insightContent}`);
     } catch (e) {

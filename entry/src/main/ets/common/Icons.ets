@@ -1,11 +1,15 @@
 /**
- * Icons.ets — 统一图标组件库（v1.1.3 新增）
+ * Icons.ets — 统一图标组件库（v1.1.3 新增，v1.1.3.2 修复）
  *
  * 设计原则：
  * - 全部使用 SVG 资源（resources/base/media/icon_*.svg）
- * - 通过 @Prop 暴露 size / color 供调用方定制
+ * - 通过 @Prop 暴露 iconSize / color 供调用方定制
  * - 24×24 基准尺寸，颜色默认 $r('app.color.ai_orange')
  * - 可适配深色模式（color 通过 ResourceColor 传入）
+ *
+ * v1.1.3.2 修复：
+ * - 将属性 `size` 重命名为 `iconSize`（避免与基类 `CustomComponent.size()` 冲突）
+ * - 此错误与 v1.1.2.2 修复的 ProgressRing.ringSize 同根因
  *
  * 图标清单：
  * - IconShuttlecock：羽毛球（资讯、App Logo）
@@ -20,8 +24,8 @@
  *
  * 使用示例：
  * ```typescript
- * IconShuttlecock({ size: 48 })
- * IconAI({ size: 24, color: $r('app.color.text_on_primary') })
+ * IconShuttlecock({ iconSize: 48 })
+ * IconAI({ iconSize: 24, color: $r('app.color.text_on_primary') })
  * ```
  */
 
@@ -31,12 +35,12 @@ const DEFAULT_ICON_SIZE: number = 24;
 
 @Component
 export struct IconShuttlecock {
-  @Prop public size: number = DEFAULT_ICON_SIZE;
+  @Prop public iconSize: number = DEFAULT_ICON_SIZE;
 
   public build(): void {
     Image($r('app.media.icon_shuttlecock'))
-      .width(this.size)
-      .height(this.size)
+      .width(this.iconSize)
+      .height(this.iconSize)
       .objectFit(ImageFit.Contain)
       .interpolation(ImageInterpolation.High)
   }
@@ -44,12 +48,12 @@ export struct IconShuttlecock {
 
 @Component
 export struct IconRacket {
-  @Prop public size: number = DEFAULT_ICON_SIZE;
+  @Prop public iconSize: number = DEFAULT_ICON_SIZE;
 
   public build(): void {
     Image($r('app.media.icon_racket'))
-      .width(this.size)
-      .height(this.size)
+      .width(this.iconSize)
+      .height(this.iconSize)
       .objectFit(ImageFit.Contain)
       .interpolation(ImageInterpolation.High)
   }
@@ -57,12 +61,12 @@ export struct IconRacket {
 
 @Component
 export struct IconVenue {
-  @Prop public size: number = DEFAULT_ICON_SIZE;
+  @Prop public iconSize: number = DEFAULT_ICON_SIZE;
 
   public build(): void {
     Image($r('app.media.icon_venue'))
-      .width(this.size)
-      .height(this.size)
+      .width(this.iconSize)
+      .height(this.iconSize)
       .objectFit(ImageFit.Contain)
       .interpolation(ImageInterpolation.High)
   }
@@ -70,12 +74,12 @@ export struct IconVenue {
 
 @Component
 export struct IconEquipment {
-  @Prop public size: number = DEFAULT_ICON_SIZE;
+  @Prop public iconSize: number = DEFAULT_ICON_SIZE;
 
   public build(): void {
     Image($r('app.media.icon_equipment'))
-      .width(this.size)
-      .height(this.size)
+      .width(this.iconSize)
+      .height(this.iconSize)
       .objectFit(ImageFit.Contain)
       .interpolation(ImageInterpolation.High)
   }
@@ -83,12 +87,12 @@ export struct IconEquipment {
 
 @Component
 export struct IconPlayer {
-  @Prop public size: number = DEFAULT_ICON_SIZE;
+  @Prop public iconSize: number = DEFAULT_ICON_SIZE;
 
   public build(): void {
     Image($r('app.media.icon_player'))
-      .width(this.size)
-      .height(this.size)
+      .width(this.iconSize)
+      .height(this.iconSize)
       .objectFit(ImageFit.Contain)
       .interpolation(ImageInterpolation.High)
   }
@@ -96,12 +100,12 @@ export struct IconPlayer {
 
 @Component
 export struct IconAI {
-  @Prop public size: number = DEFAULT_ICON_SIZE;
+  @Prop public iconSize: number = DEFAULT_ICON_SIZE;
 
   public build(): void {
     Image($r('app.media.icon_ai'))
-      .width(this.size)
-      .height(this.size)
+      .width(this.iconSize)
+      .height(this.iconSize)
       .objectFit(ImageFit.Contain)
       .interpolation(ImageInterpolation.High)
   }
@@ -109,12 +113,12 @@ export struct IconAI {
 
 @Component
 export struct IconSparkle {
-  @Prop public size: number = DEFAULT_ICON_SIZE;
+  @Prop public iconSize: number = DEFAULT_ICON_SIZE;
 
   public build(): void {
     Image($r('app.media.icon_sparkle'))
-      .width(this.size)
-      .height(this.size)
+      .width(this.iconSize)
+      .height(this.iconSize)
       .objectFit(ImageFit.Contain)
       .interpolation(ImageInterpolation.High)
   }
@@ -122,12 +126,12 @@ export struct IconSparkle {
 
 @Component
 export struct IconRefresh {
-  @Prop public size: number = DEFAULT_ICON_SIZE;
+  @Prop public iconSize: number = DEFAULT_ICON_SIZE;
 
   public build(): void {
     Image($r('app.media.icon_refresh'))
-      .width(this.size)
-      .height(this.size)
+      .width(this.iconSize)
+      .height(this.iconSize)
       .objectFit(ImageFit.Contain)
       .interpolation(ImageInterpolation.High)
   }
@@ -135,12 +139,12 @@ export struct IconRefresh {
 
 @Component
 export struct IconFire {
-  @Prop public size: number = DEFAULT_ICON_SIZE;
+  @Prop public iconSize: number = DEFAULT_ICON_SIZE;
 
   public build(): void {
     Image($r('app.media.icon_fire'))
-      .width(this.size)
-      .height(this.size)
+      .width(this.iconSize)
+      .height(this.iconSize)
       .objectFit(ImageFit.Contain)
       .interpolation(ImageInterpolation.High)
   }
@@ -152,14 +156,14 @@ export struct IconFire {
 @Component
 export struct TabIconHome {
   public build(): void {
-    IconShuttlecock({ size: DesignTokens.ICON_SIZE })
+    IconShuttlecock({ iconSize: DesignTokens.ICON_SIZE })
   }
 }
 
 @Component
 export struct TabIconCommunity {
   public build(): void {
-    IconVenue({ size: DesignTokens.ICON_SIZE })
+    IconVenue({ iconSize: DesignTokens.ICON_SIZE })
   }
 }
 
